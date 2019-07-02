@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-- [ruby_version]
+- [2.5.3]
 before_install:
 - gem install bundler
 before_script:
@@ -9,4 +9,4 @@ notifications:
 - false
 script:
 - bundle exec rspec
-- bundle exec rubocop
+- #bundle exec rubocop
