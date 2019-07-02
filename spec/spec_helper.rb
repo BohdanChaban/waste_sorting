@@ -10,7 +10,11 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   Coveralls::SimpleCov::Formatter
   ]
 )
-SimpleCov.start
+SimpleCov.start do
+  add_filter 'jobs'
+  add_filter 'channels'
+  add_filter 'mailers'
+end
 
 
 
