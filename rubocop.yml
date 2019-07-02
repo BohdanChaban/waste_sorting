@@ -21,53 +21,13 @@ AllCops:
     - 'spec/controller_helpers.rb'
   TargetRubyVersion: 2.5
 
-Bundler/OrderedGems:
-  Enabled: false
-
 Metrics/LineLength:
-  Max: 120
-
-Metrics/ClassLength:
-  Max: 500
-
-Metrics/MethodLength:
-  Enabled: false
-
-Metrics/AbcSize:
-  Enabled: false
-
-Metrics/BlockLength:
-  Max: 500
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
-  Enabled: false
-
-Naming/UncommunicativeMethodParamName:
-  Enabled: false
-
-RSpec/ExampleLength:
   Max: 100
 
-RSpec/IteratedExpectation:
-  Enabled: false
-
-RSpec/DescribedClass:
-  Enabled: false
-
-RSpec/ContextWording:
-  Enabled: false
-
-RSpec/MultipleExpectations:
-  Enabled: false
-
-RSpec/DescribeClass:
-  Enabled: false
-
-Style/GuardClause:
-  Enabled: false
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'
 
 Style/DateTime:
   Enabled: false
@@ -78,29 +38,5 @@ Style/MixinUsage:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/Lambda:
-  Enabled: false
-
 Style/Documentation:
-  Enabled: false
-
-Style/EmptyMethod:
-  Enabled: false
-
-Style/NumericPredicate:
-  Enabled: false
-
-Style/PercentLiteralDelimiters:
-  Enabled: false
-
-Style/MethodCallWithoutArgsParentheses:
-  Enabled: false
-
-Style/AsciiComments:
-  Enabled: false
-
-Lint/AmbiguousBlockAssociation:
-  Enabled: false
-
-Rails/OutputSafety:
   Enabled: false
