@@ -30,13 +30,13 @@ test:
   host: localhost
   port: 5432
 
-  username: binman
-  password: vAChtErU
+#  username: binman
+#  password: vAChtErU
 
 
 production:
   <<: *default
   database: waste_sorting_production
 
-  username: binman
-  password: vAChtErU
+#  username: binman
+#  password: vAChtErU
