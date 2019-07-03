@@ -16,7 +16,6 @@ development:
   username: binman
   password: vAChtErU
 
-
   host: localhost
   port: 5432
 
