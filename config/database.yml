@@ -6,8 +6,10 @@ default: &default
 development:
   <<: *default
   database: waste_sorting
+  
   username: binman
   password: vAChtErU
+  
   host: localhost
   port: 5432
 
@@ -17,14 +19,16 @@ development:
 test:
   <<: *default
   database: waste_sorting_test  
+  
   host: localhost
   port: 5432
+  
 #  username: binman
 #  password: vAChtErU
-
 
 production:
   <<: *default
   database: waste_sorting_production
+  
 #  username: binman
 #  password: vAChtErU
