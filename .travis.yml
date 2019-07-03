@@ -9,4 +9,4 @@ notifications:
 - false
 script:
 - bundle exec rspec
-- #bundle exec rubocop
+- bundle exec rubocop
