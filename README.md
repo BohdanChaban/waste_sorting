@@ -1,24 +1,5 @@
-# README
+# Waste Sorting
+[![Build Status](https://travis-ci.org/BohdanChaban/waste_sorting.svg?branch=master)](https://travis-ci.org/BohdanChaban/waste_sorting)
+[![Coverage Status](https://coveralls.io/repos/github/BohdanChaban/waste_sorting/badge.svg?branch=master)](https://coveralls.io/github/BohdanChaban/waste_sorting?branch=master)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Project for a garbage collecting and sorting company to communicate with suppliers of recycled materials. Project pivorak Ruby Summer Course 2019
