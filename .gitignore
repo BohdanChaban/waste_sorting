@@ -35,4 +35,3 @@
 .idea
 .DS_Store
 coverage
-config/database.yml
