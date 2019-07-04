@@ -61,6 +61,7 @@ group :test do
   gem 'chromedriver-helper'
   # Use Factory_Bot as the test tool
   gem 'factory_bot', '~> 5.0.2'
+  gem 'factory_bot_rails', '~> 5.0.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
