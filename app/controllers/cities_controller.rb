@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
-  before_action :set_city, only: %i[show edit]
+  before_action :set_city, only: %i[show]
 
   # GET /cities
   # GET /cities.json
@@ -15,9 +15,6 @@ class CitiesController < ApplicationController
   def new
     @city = City.new
   end
-
-  # GET /cities/1/edit
-  def edit; end
 
   # POST /cities
   # POST /cities.json
