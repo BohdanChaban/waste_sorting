@@ -27,9 +27,10 @@ RSpec.describe CitiesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # City. As you add validations to City, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { name: 'Lviv' } }
+  # let(:valid_attributes) { { name: 'Lviv' } }
 
-  let(:invalid_attributes) { { name: nil } }
+  # let(:invalid_attributes) { { name: nil } }
+  let(:city) { FactoryBot.create(:valid_city) }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -38,7 +39,7 @@ RSpec.describe CitiesController, type: :controller do
 
   describe 'GET #index' do
     it 'returns a success response' do
-      City.create! valid_attributes
+      # City.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -46,7 +47,7 @@ RSpec.describe CitiesController, type: :controller do
 
   describe 'GET #show' do
     it 'returns a success response' do
-      city = City.create! valid_attributes
+      # city = City.create! valid_attributes
       get :show, params: { id: city.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -63,19 +64,19 @@ RSpec.describe CitiesController, type: :controller do
     context 'with valid params' do
       it 'creates a new City' do
         expect do
-          post :create, params: { city: valid_attributes }, session: valid_session
+          post :create, params: { city: { name: 'valid_name' } }, session: valid_session
         end.to change(City, :count).by(1)
       end
 
       it 'redirects to the created city' do
-        post :create, params: { city: valid_attributes }, session: valid_session
+        post :create, params: { city: { name: 'valid_name' } }, session: valid_session
         expect(response).to redirect_to(City.last)
       end
     end
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: { city: invalid_attributes }, session: valid_session
+        post :create, params: { city: { name: nil } }, session: valid_session
         expect(response).to be_successful
       end
     end
