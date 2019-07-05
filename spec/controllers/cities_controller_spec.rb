@@ -64,12 +64,12 @@ RSpec.describe CitiesController, type: :controller do
     context 'with valid params' do
       it 'creates a new City' do
         expect do
-          post :create, params: { city: { name: 'valid_name' } }, session: valid_session
+          post :create, params: { city: { name: 'Бібрка' } }, session: valid_session
         end.to change(City, :count).by(1)
       end
 
       it 'redirects to the created city' do
-        post :create, params: { city: { name: 'valid_name' } }, session: valid_session
+        post :create, params: { city: { name: 'Болехів' } }, session: valid_session
         expect(response).to redirect_to(City.last)
       end
     end

@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :city do
     factory :valid_city do
-      name { 'Lviv' }
+      name { 'Львів' }
     end
   end
 end
