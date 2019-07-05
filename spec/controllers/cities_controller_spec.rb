@@ -59,14 +59,6 @@ RSpec.describe CitiesController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    it 'returns a success response' do
-      city = City.create! valid_attributes
-      get :edit, params: { id: city.to_param }, session: valid_session
-      expect(response).to be_successful
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new City' do
