@@ -17,8 +17,6 @@ development:
 test:
   <<: *default
   database: waste_sorting_test
-  username: binman
-  password: vAChtErU
   host: localhost
   port: 5432
   
