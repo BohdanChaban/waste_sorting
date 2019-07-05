@@ -44,6 +44,9 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails'
   gem 'rubocop', '~> 0.72.0', require: false
+  # Use Factory_Bot as the test tool
+  gem 'factory_bot', '~> 5.0.2'
+  gem 'factory_bot_rails', '~> 5.0.2'
 end
 
 group :development do
@@ -61,8 +64,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  # Use Factory_Bot as the test tool
-  gem 'factory_bot', '~> 5.0.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
