@@ -71,9 +71,9 @@ RSpec.describe ArticlesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-      { title: 'New Test article',
-      summary: 'New Summary for article',
-      body: 'New Some body for article' }
+        { title: 'New Test article',
+          summary: 'New Summary for article',
+          body: 'New Some body for article' }
       end
 
       it 'updates the requested article' do
@@ -81,7 +81,6 @@ RSpec.describe ArticlesController, type: :controller do
         put :update, params: { id: article.to_param, article: new_attributes }, session: valid_session
         article.reload
         expect(article.title).to eql(new_attributes[:title])
-
       end
 
       it 'redirects to the article' do
