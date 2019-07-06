@@ -14,10 +14,10 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   let(:valid_session) { {} }
+  let!(:article) { FactoryBot.create(:valid_attributes) }
 
   describe 'GET #index' do
     it 'returns a success response' do
-      Article.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -25,7 +25,6 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe 'GET #show' do
     it 'returns a success response' do
-      article = Article.create! valid_attributes
       get :show, params: { id: article.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -40,7 +39,6 @@ RSpec.describe ArticlesController, type: :controller do
 
   describe 'GET #edit' do
     it 'returns a success response' do
-      article = Article.create! valid_attributes
       get :edit, params: { id: article.to_param }, session: valid_session
       expect(response).to be_successful
     end
@@ -77,14 +75,12 @@ RSpec.describe ArticlesController, type: :controller do
       end
 
       it 'updates the requested article' do
-        article = Article.create! valid_attributes
         put :update, params: { id: article.to_param, article: new_attributes }, session: valid_session
         article.reload
         expect(article.title).to eql(new_attributes[:title])
       end
 
       it 'redirects to the article' do
-        article = Article.create! valid_attributes
         put :update, params: { id: article.to_param, article: valid_attributes }, session: valid_session
         expect(response).to redirect_to(article)
       end
@@ -92,7 +88,6 @@ RSpec.describe ArticlesController, type: :controller do
 
     context 'with invalid params' do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        article = Article.create! valid_attributes
         put :update, params: { id: article.to_param, article: invalid_attributes }, session: valid_session
         expect(response).to be_successful
       end
@@ -100,15 +95,14 @@ RSpec.describe ArticlesController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let!(:article) { FactoryBot.create(:valid_attributes) }
     it 'destroys the requested article' do
-      article = Article.create! valid_attributes
       expect do
         delete :destroy, params: { id: article.to_param }, session: valid_session
       end.to change(Article, :count).by(-1)
     end
 
     it 'redirects to the articles list' do
-      article = Article.create! valid_attributes
       delete :destroy, params: { id: article.to_param }, session: valid_session
       expect(response).to redirect_to(articles_url)
     end

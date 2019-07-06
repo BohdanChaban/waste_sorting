@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   context 'validations' do
-    let!(:article) { FactoryBot.create(:article) }
+    let!(:article) { FactoryBot.create(:valid_attributes) }
     let(:short_text)    { 'ffff' }
     let(:long_text)     { 'f' * 41 }
 
     # Errors definition
     let(:short_error)   { 'pick a longer name' }
     let(:long_error)    { 'pick a shorter name' }
+    let(:blank) { "can't be blank" }
 
     it 'is valid with valid attributes' do
       expect(article).to be_valid
@@ -29,7 +30,7 @@ RSpec.describe Article, type: :model do
     it 'is not valid without a title' do
       article.title = nil
       expect(article).not_to be_valid
-      expect(article.errors.messages[:title]).to eq [short_error]
+      expect(article.errors.messages[:title]).to eq [short_error, blank]
     end
   end
 end
