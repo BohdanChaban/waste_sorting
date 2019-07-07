@@ -5,5 +5,10 @@ FactoryBot.define do
       summary { 'This is summary' }
       body { 'Input text here' }
     end
+    factory :invalid_article do
+      title { 'Some' }
+      summary { '' }
+      body { '' }
+    end
   end
 end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
+  let(:valid_session) { {} }
   let(:valid_article) do
     { title: 'Test article',
       summary: 'Summary for article',
@@ -12,8 +13,6 @@ RSpec.describe ArticlesController, type: :controller do
       summary: '',
       body: '' }
   end
-
-  let(:valid_session) { {} }
   let!(:article) { FactoryBot.create(:valid_article) }
 
   describe 'GET #index' do
