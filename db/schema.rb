@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2019_07_04_150029) do
     t.string "title"
     t.string "summary"
     t.string "body"
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string "name", default: "", null: false
