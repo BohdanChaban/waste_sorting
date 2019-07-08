@@ -18,5 +18,13 @@ FactoryBot.define do
       email { 'admin@gmail.com' }
       role { 'admin' }
     end
+
+    factory :invalid_user_with_long_email do
+      email { 'vasia12@gmail.com' * 20 }
+    end
+
+    factory :invalid_user_with_short_email do
+      email { 'a@c.' }
+    end
   end
 end
