@@ -20,7 +20,6 @@ class CitiesController < ApplicationController
   # POST /cities.json
   def create
     @city = City.new(city_params)
-
     respond_to do |format|
       if @city.save
         format.html { redirect_to @city, notice: 'City was successfully created.' }

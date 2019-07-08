@@ -35,8 +35,7 @@ RSpec.describe User, type: :model do
 
   context 'check already exist of email' do
     it 'should validate uniqueness of email' do
-      user1 = FactoryBot.create(:user)
-      user1.save
+      FactoryBot.create(:user)
       user2 = FactoryBot.build(:user)
       expect { user2.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
