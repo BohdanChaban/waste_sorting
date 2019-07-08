@@ -57,9 +57,8 @@ RSpec.describe City, type: :model do
 
   context 'check already exist of city' do
     it 'should validate uniqueness of city name' do
-      city1 = FactoryBot.create(:valid_city, name: 'Прага')
-      city1.save
-      city2 = FactoryBot.build(:valid_city, name: 'Прага')
+      city1 = FactoryBot.create(:valid_city, name: 'Конотоп')
+      city2 = FactoryBot.build(:valid_city, name: 'Конотоп')
       expect { city2.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
