@@ -48,17 +48,16 @@ RSpec.describe User, type: :model do
     end
   end
   context 'check validation of role' do
-    
     it 'is valid with role customer' do
       user = FactoryBot.create(:user_customer)
       expect(user).to be_valid
-    end  
-    
+    end
+
     it 'is valid with role manager' do
       user = FactoryBot.create(:user_manager)
       expect(user).to be_valid
-    end 
-    
+    end
+
     it 'is valid with role admin' do
       user = FactoryBot.create(:user_admin)
       expect(user).to be_valid
@@ -67,6 +66,6 @@ RSpec.describe User, type: :model do
     it 'is not allow not inclusion value in the role' do
       user = FactoryBot.create(:user)
       expect { user.role = not_inclusion_role }.to raise_error(ArgumentError)
-end
-  end 
+    end
+  end
 end

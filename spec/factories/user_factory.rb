@@ -3,7 +3,7 @@ FactoryBot.define do
     email { 'vasia12@gmail.com' }
     role { 'customer' }
     password { '12345678' }
- 
+
     factory :user_customer do
       email { 'customer@gmail.com' }
       role { 'customer' }
@@ -18,14 +18,13 @@ FactoryBot.define do
       email { 'admin@gmail.com' }
       role { 'admin' }
     end
-    
-    factory :invalid_user_with_long_email  do
+
+    factory :invalid_user_with_long_email do
       email { 'vasia12@gmail.com' * 20 }
     end
-    
-    factory :invalid_user_with_short_email  do
+
+    factory :invalid_user_with_short_email do
       email { 'a@c.' }
     end
-
   end
 end
