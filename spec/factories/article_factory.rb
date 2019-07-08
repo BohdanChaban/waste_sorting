@@ -10,11 +10,11 @@ FactoryBot.define do
       summary { '' }
       body { '' }
     end
-    factory :invalid_article_with_short_text  do
-          title { 'ffff' }
+    factory :invalid_article_with_short_text do
+      title { 'ffff' }
     end
-    factory :invalid_article_with_long_text  do
-          title { 'f' * 41 }
+    factory :invalid_article_with_long_text do
+      title { 'f' * 41 }
     end
   end
 end
