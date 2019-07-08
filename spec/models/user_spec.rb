@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:default_role) { 'customer' }
-  let(:valid_email) { 'bodia@gmail.com' }
   let(:not_inclusion_role) { 'vasya' }
 
   context 'check validation of user ' do
@@ -18,11 +17,6 @@ RSpec.describe User, type: :model do
   end
 
   context 'check validation of email ' do
-    it 'is valid with email attributes' do
-      user = FactoryBot.build(:user, email: valid_email)
-      expect(user).to be_valid
-    end
-
     it 'is not valid with short email' do
       user = FactoryBot.build(:invalid_user_with_short_email)
       expect(user).to be_invalid
@@ -41,9 +35,9 @@ RSpec.describe User, type: :model do
 
   context 'check already exist of email' do
     it 'should validate uniqueness of email' do
-      user1 = FactoryBot.create(:user, email: valid_email)
+      user1 = FactoryBot.create(:user)
       user1.save
-      user2 = FactoryBot.build(:user, email: valid_email)
+      user2 = FactoryBot.build(:user)
       expect { user2.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
