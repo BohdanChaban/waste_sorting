@@ -50,7 +50,7 @@ RSpec.describe AccountsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Account' do
         expect do
-        post :create, params: { account: valid_account }, session: valid_session
+          post :create, params: { account: valid_account }, session: valid_session
         end.to change(Account, :count).by(1)
       end
 

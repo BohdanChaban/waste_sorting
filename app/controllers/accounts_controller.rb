@@ -14,18 +14,21 @@ class AccountsController < ApplicationController
   # GET /accounts/new
   def new
     @account = Account.new
+    @cities = City.all
   end
 
   # GET /accounts/1/edit
-  def edit; end
+  def edit
+    @cities = City.all
+  end
 
   # POST /accounts
   # POST /accounts.json
   def create
-    
     @account = Account.new(account_params)
-    
-        respond_to do |format|
+    @account.user = current_user
+
+    respond_to do |format|
       if @account.save
         format.html { redirect_to @account, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
@@ -69,6 +72,6 @@ class AccountsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def account_params
-    params.require(:account).permit(:name, :surname, :address, :mobile_number , :user_id , :city_id)
+    params.require(:account).permit(:name, :surname, :address, :mobile_number, :user_id, :city_id)
   end
 end
