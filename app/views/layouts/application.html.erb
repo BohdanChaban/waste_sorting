@@ -10,8 +10,16 @@
   </head>
 
   <body>
-    <div class = "container">
+    <%= render 'layouts/header' %>
+    <main class="main container">
       <%= yield %>
-    </div> 
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span> Pivorak Ruby Summer Course</span>
+        <span class="right"> All Rights Reserved &copy; 2019</span>
+      </div>
+    </footer>
   </body>
 </html>

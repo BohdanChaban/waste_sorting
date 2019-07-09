@@ -36,6 +36,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'devise-bootstrap-views', ' ~> 1.0 '
 
+gem 'therubyracer'
+
 group :development, :test do
   gem 'coveralls', require: false
   gem 'simplecov', require: false, group: :test

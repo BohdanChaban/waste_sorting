@@ -1,0 +1,90 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  //color: #FFF;
+  //background-color: #ffc107;
+  //background-image: asset_url('grass-bg.png');
+  //opacity: 0.6;
+  //height: 250px;
+  //padding: 15px;
+  //h1 {
+  //  display: inline-block;
+  //}
+
+  .nav-links {
+    background-color: #212529;
+    height: 60px;
+    padding: 12px;
+    color: #212529;
+    .btn {
+      width: 130px;
+      margin-right: 25px;
+    }
+  }
+
+  .header-main {
+    height: 250px;
+    background-color: #ffc107;
+    background-image: asset_url('grass-nature.jpg');
+    background-position: center;
+
+    .container {
+      background-color: rgba(255,193,7,0.3);
+      height: 100%;
+    }
+  }
+
+  .header-info {
+    text-align: center;
+
+    h1 {
+      padding: 35px 0 20px;
+    }
+
+    .btn {
+      margin: 30px 10px 0;
+      width: 130px;
+    }
+  }
+}
+
+.main {
+  background-color: #FFF;
+  padding: 15px;
+  min-height: calc(100% - 380px);
+}
+
+.footer {
+  background-color: #ffc107;
+  color: #212529;
+  height: 70px;
+  padding: 25px;
+  font-size: 16px;
+  //text-align: right;
+}
+
+.right {
+  float: right;
+}
