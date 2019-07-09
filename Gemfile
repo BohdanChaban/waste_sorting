@@ -49,6 +49,7 @@ group :development, :test do
   # Use Factory_Bot as the test tool
   gem 'factory_bot', '~> 5.0.2'
   gem 'factory_bot_rails', '~> 5.0.2'
+  gem 'pry'
 end
 
 group :development do
