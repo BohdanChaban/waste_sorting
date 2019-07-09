@@ -1,4 +1,6 @@
 class City < ApplicationRecord
+  has_many :accounts
+
   MAX_NAME_LENGTH = 30
   MIN_NAME_LENGTH = 3
 
