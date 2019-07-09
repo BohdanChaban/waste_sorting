@@ -36,6 +36,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'devise-bootstrap-views', ' ~> 1.0 '
 
+gem 'therubyracer'
+
 group :development, :test do
   gem 'coveralls', require: false
   gem 'simplecov', require: false, group: :test
@@ -47,6 +49,7 @@ group :development, :test do
   # Use Factory_Bot as the test tool
   gem 'factory_bot', '~> 5.0.2'
   gem 'factory_bot_rails', '~> 5.0.2'
+  gem 'pry'
 end
 
 group :development do
