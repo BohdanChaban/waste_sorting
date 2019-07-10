@@ -3,6 +3,7 @@ class CreateDistricts < ActiveRecord::Migration[5.2]
     create_table :districts do |t|
       t.string :name
 
+      t.belongs_to :city, index: true
       t.timestamps
     end
   end

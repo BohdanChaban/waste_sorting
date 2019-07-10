@@ -1,13 +1,17 @@
 class DistrictsController < ApplicationController
+  # before_action :authenticate_user!
   before_action :set_district, only: %i[show edit update destroy]
 
   # GET /districts/new
   def new
     @district = District.new
+    @cities = City.all
   end
 
   # GET /districts/1/edit
-  def edit; end
+  def edit
+    @cities = City.all
+  end
 
   # POST /districts
   # POST /districts.json
@@ -49,6 +53,9 @@ class DistrictsController < ApplicationController
     end
   end
 
+  # def able_to_moderate?
+  #    user.role == 'customer'
+  #  end
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -58,6 +65,6 @@ class DistrictsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def district_params
-    params.require(:district).permit(:name)
+    params.require(:district).permit(:name, :city_id)
   end
 end

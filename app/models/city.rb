@@ -6,6 +6,8 @@ class City < ApplicationRecord
 
   before_validation :capitalize_name
 
+  has_many :districts, dependent: :destroy
+
   validates :name, presence: true
   validates :name, length: { minimum: MIN_NAME_LENGTH, maximum: MAX_NAME_LENGTH }
   validates :name, format: { with: /\A[\'\ а-щА-ЩЬьЮюЯяЇїІіЄєҐґ-]+\z/ }

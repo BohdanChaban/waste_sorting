@@ -14,6 +14,7 @@
     <% @cities.each do |city| %>
       <tr>
         <td><%= city.name %></td>
+        <td><%= city.id %></td>
         <td><%= link_to 'Show', city %></td>
       </tr>
     <% end %>
@@ -23,3 +24,4 @@
 <br>
 
 <%= link_to 'New City', new_city_path %>
+<%= link_to "Add Districs", :controller => "districts", :action => "new" %>

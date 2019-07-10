@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe District, type: :model do
+  xcontext 'relations' do
+    it { is_expected.to belongs_to(:city) }
+  end
+
   context 'check validation of district' do
     it 'is valid with valid attributes' do
       district = FactoryBot.create(:district_with_valid_name)

@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :district do
+    association :city, factory: :city_with_valid_name
     factory :district_with_valid_name do
       name { 'Залізничний' }
     end

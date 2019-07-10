@@ -4,5 +4,10 @@
   <strong>Name:</strong>
   <%= @city.name %>
 </p>
+<p>
+  <strong>Districts:</strong>
+  <%=@city.districts.map { |district| district.name }.join(' ') %>
+</p>
 
 <%= link_to 'Back', root_path %>
+<%= link_to 'Add District', root_path %>
