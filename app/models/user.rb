@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :account
+
   EMAIL_LENGTH = (6..50).freeze
   ROLES = %w[customer manager admin].freeze
   enum role: ROLES
