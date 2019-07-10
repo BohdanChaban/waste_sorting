@@ -5,7 +5,7 @@ FactoryBot.define do
 
     name { 'Name' }
     surname { 'Surname' }
-    address { 'Львів' }
+    address { 'Шевченка , 77' }
     mobile_number { '+380998494555' }
 
     factory :invalid_account do
@@ -24,7 +24,7 @@ FactoryBot.define do
     end
 
     factory :account_with_long_address do
-      address { 'Львів' * 20 }
+      address { 'Шевченка , 77' * 20 }
     end
 
     factory :account_with_long_mobile_number do

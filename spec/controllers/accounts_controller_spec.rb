@@ -4,7 +4,7 @@ RSpec.describe AccountsController, type: :controller do
   let(:valid_account) do
     { name: 'Name',
       surname: 'Surname',
-      address: 'Львів',
+      address: 'Шевченка , 77',
       mobile_number: '+380998765952',
       city_id: account.city_id }
   end
