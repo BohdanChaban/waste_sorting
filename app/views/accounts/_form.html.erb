@@ -33,9 +33,11 @@
   
   <div class="field">
     <%= form.label :city_id, "City" %>
-    <%= form.select(:city_id) do %>
-      <% @cities.each do |c| -%>
-        <%= content_tag(:option, c.name, value: c.id) %>
+    <% if @cities %>  
+      <%= form.select(:city_id) do %>
+        <% @cities.each do |c| -%>
+          <%= content_tag(:option, c.name, value: c.id) %>
+        <% end %>
       <% end %>
     <% end %>
   </div>
