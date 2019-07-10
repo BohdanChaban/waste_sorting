@@ -4,7 +4,7 @@ RSpec.describe AccountsController, type: :controller do
   let(:valid_account) do
     { name: 'Name',
       surname: 'Surname',
-      address: 'Шевченка , 77',
+      address: 'Шевченка, 77',
       mobile_number: '+380998765952',
       city_id: account.city_id }
   end
@@ -57,7 +57,6 @@ RSpec.describe AccountsController, type: :controller do
     context 'with valid params' do
       it 'creates a new Account' do
         login_with user
-        # binding.pry
         expect do
           post :create, params: { account: valid_account }, session: valid_session
         end.to change(Account, :count).by(1)

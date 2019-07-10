@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :accounts, only: %i[index create edit new show update]
+  resources :accounts, except: :destroy   
   resources :articles
   devise_for :users
   resources :cities, only: %i[index create new show]
