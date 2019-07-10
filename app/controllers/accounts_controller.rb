@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: %i[show edit update destroy]
+  before_action :set_account, only: %i[show edit update]
 
   def index
     @accounts = Account.all
@@ -48,7 +48,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:name, :surname, :address, :mobile_number, :user_id, :city_id)
+    params.require(:account).permit(:name, :surname, :address, :mobile_number, :city_id)
   end
 
   def new_account
