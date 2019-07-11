@@ -10,23 +10,44 @@ RSpec.describe CitiesController, type: :controller do
     { name: '' }
   end
 
+  let(:user_customer) { FactoryBot.create(:user_customer) }
+
   let(:user_admin) { FactoryBot.create(:user_admin) }
 
   let!(:city) { FactoryBot.create(:city_with_valid_name) }
 
   describe 'GET #index' do
-    it 'returns a success response' do
-      login_with user_admin
-      get :index, params: {}, session: valid_session
-      expect(response).to be_successful
+    context 'for customer role' do
+      it 'returns a success response' do
+        login_with user_customer
+        get :index, params: {}, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+
+    context 'for admin role' do
+      it 'returns a success response' do
+        login_with user_admin
+        get :index, params: {}, session: valid_session
+        expect(response).to be_successful
+      end
     end
   end
 
   describe 'GET #show' do
-    it 'returns a success response' do
-      login_with user_admin
-      get :show, params: { id: city.to_param }, session: valid_session
-      expect(response).to be_successful
+    context 'for admin role' do
+      it 'returns a success response' do
+        login_with user_admin
+        get :show, params: { id: city.to_param }, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+    context 'for customer role' do
+      it 'returns a success response' do
+        login_with user_customer
+        get :show, params: { id: city.to_param }, session: valid_session
+        expect(response).to be_successful
+      end
     end
   end
 
