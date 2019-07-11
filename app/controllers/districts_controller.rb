@@ -4,11 +4,13 @@ class DistrictsController < ApplicationController
 
   def new
     @district = District.new
+    # @districts = District.all
     @cities = City.all
   end
 
   # GET /districts/1/edit
   def edit
+    @districts = District.all
     @cities = City.all
   end
 
@@ -32,7 +34,7 @@ class DistrictsController < ApplicationController
   def update
     respond_to do |format|
       if @district.update(district_params)
-        format.html { redirect_to @district, notice: 'District was successfully updated.' }
+        format.html { redirect_to cities_path, notice: 'District was successfully updated.' }
         format.json { render :show, status: :ok, location: @district }
       else
         format.html { render :edit }

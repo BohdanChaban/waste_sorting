@@ -17,15 +17,6 @@
 
   </div>
 
-  <div class="field">
-    <%= form.label :city_id, "City" %>
-    <%= form.select(:city_id) do %>
-      <% @cities.each do |c| -%>
-        <%= content_tag(:option, c.name, value: c.id) %>
-      <% end %>
-    <% end %>
-  </div>
-
   <div class="actions">
     <%= form.submit %>
   </div>
