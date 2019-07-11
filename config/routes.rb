@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :districts, only: %i[create new edit update destroy]
+  resources :districts, except: %i[index show]
   resources :accounts, except: :destroy
   resources :articles
   devise_for :users

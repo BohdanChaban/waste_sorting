@@ -1,8 +1,7 @@
 class DistrictsController < ApplicationController
-  # before_action :authenticate_user!
-  before_action :set_district, only: %i[show edit update destroy]
+  before_action :check_admin_access
+  before_action :set_district, only: %i[edit update destroy]
 
-  # GET /districts/new
   def new
     @district = District.new
     @cities = City.all
@@ -17,10 +16,9 @@ class DistrictsController < ApplicationController
   # POST /districts.json
   def create
     @district = District.new(district_params)
-
     respond_to do |format|
       if @district.save
-        format.html { redirect_to @district, notice: 'District was successfully created.' }
+        format.html { redirect_to cities_path, notice: 'District was successfully created.' }
         format.json { render :show, status: :created, location: @district }
       else
         format.html { render :new }
@@ -53,17 +51,12 @@ class DistrictsController < ApplicationController
     end
   end
 
-  # def able_to_moderate?
-  #    user.role == 'customer'
-  #  end
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_district
     @district = District.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def district_params
     params.require(:district).permit(:name, :city_id)
   end

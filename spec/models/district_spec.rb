@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe District, type: :model do
-  xcontext 'relations' do
-    it { is_expected.to belongs_to(:city) }
+  context 'Associations' do
+    it 'belongs to city' do
+      assc = described_class.reflect_on_association(:city)
+      expect(assc.macro).to eq :belongs_to
+    end
   end
 
   context 'check validation of district' do

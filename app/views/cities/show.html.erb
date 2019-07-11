@@ -9,5 +9,5 @@
   <%=@city.districts.map { |district| district.name }.join(' ') %>
 </p>
 
-<%= link_to 'Back', root_path %>
-<%= link_to 'Add District', root_path %>
+<%= link_to 'Back', cities_path %>
+<%= link_to "Add Districs", :controller => "districts", :action => "new" %>
