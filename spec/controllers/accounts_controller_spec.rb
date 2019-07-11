@@ -65,7 +65,7 @@ RSpec.describe AccountsController, type: :controller do
       it 'redirects to the created account' do
         login_with user
         post :create, params: { account: valid_account }, session: valid_session
-        expect(response).to redirect_to(Account.last)
+        expect(response).to redirect_to(root_path)
       end
     end
 
