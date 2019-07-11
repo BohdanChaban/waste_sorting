@@ -46,7 +46,7 @@ class DistrictsController < ApplicationController
   def destroy
     @district.destroy
     respond_to do |format|
-      format.html { redirect_to districts_url, notice: 'District was successfully destroyed.' }
+      format.html { redirect_to cities_path, notice: 'District was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

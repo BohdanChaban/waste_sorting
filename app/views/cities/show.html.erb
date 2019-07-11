@@ -13,4 +13,6 @@
 
 <%if current_user.admin?%> 
   <%= link_to "Add Districs" , :controller => "districts", :action => "new" %>
+    <%= link_to "Edit Districs" , :controller => "districts", :action => "edit" %>
+  <%= link_to "Delete Districs" , :controller => "districts", :action => "destroy" %>
 <% end %>
