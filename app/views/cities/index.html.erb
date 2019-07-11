@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>№</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
     <% @cities.each do |city| %>
       <tr>
         <td><%= city.name %></td>
-        <td><%= city.id %></td>
         <td><%= link_to 'Show', city %></td>
       </tr>
     <% end %>
