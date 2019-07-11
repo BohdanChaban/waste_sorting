@@ -21,7 +21,8 @@
 </table>
 
 <br>
+
 <%if current_user.admin?%> 
-<%= link_to 'New City', new_city_path %>
-<%= link_to "Add Districs", :controller => "districts", :action => "new" %>
-<%end%>
+  <%= link_to 'New City', new_city_path %>
+  <%= link_to "Add Districs", :controller => "districts", :action => "new" %>
+<% end %>

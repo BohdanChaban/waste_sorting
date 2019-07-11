@@ -10,6 +10,7 @@
 </p>
 
 <%= link_to 'Back', cities_path %>
+
 <%if current_user.admin?%> 
-<%= link_to "Add Districs" , :controller => "districts", :action => "new" %>
-<%end%>
+  <%= link_to "Add Districs" , :controller => "districts", :action => "new" %>
+<% end %>
