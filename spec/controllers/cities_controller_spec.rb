@@ -35,16 +35,17 @@ RSpec.describe CitiesController, type: :controller do
   end
 
   describe 'GET #show' do
-    context 'for admin role' do
+    context 'for customer role' do
       it 'returns a success response' do
-        login_with user_admin
+        login_with user_customer
         get :show, params: { id: city.to_param }, session: valid_session
         expect(response).to be_successful
       end
     end
-    context 'for customer role' do
+
+    context 'for admin role' do
       it 'returns a success response' do
-        login_with user_customer
+        login_with user_admin
         get :show, params: { id: city.to_param }, session: valid_session
         expect(response).to be_successful
       end
