@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
-  <%= @city.name %>
+  <%= @city.name%>
 </p>
 <table>
   <thead>
@@ -17,7 +16,7 @@
       <tr>
         <td><%= district.name %></td>
         <%if current_user.admin?%> 
-        <td><%= link_to "Edit Districs" ,edit_district_path(district.id), :action => "edit" %></td>
+        <td><%= link_to "Edit Districs"  %></td>
         <% end %>
       </tr>
     <% end %>
@@ -27,6 +26,6 @@
 
 <%if current_user.admin?%> 
 
-<%= link_to "Add Districs", new_district_path(@city), :action => "new" %>
-<%= link_to "Delete Districs" , :controller => "districts", :action => "destroy" %>
+<%= link_to "Add Districs", new_city_district_path(@city) %>
+<%= link_to "Delete Districs" %>
 <% end %>

@@ -4,7 +4,6 @@ class DistrictsController < ApplicationController
 
   def new
     @district = District.new
-    # @districts = District.all
     @cities = City.all
   end
 
