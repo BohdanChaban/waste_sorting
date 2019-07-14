@@ -1,11 +1,11 @@
 FactoryBot.define do
   factory :district do
     association :city, factory: :city_with_valid_name
-    factory :district_with_valid_name do
+    factory :district_valid_name do
       name { 'Залізничний' }
     end
 
-    factory :district_with_invalid_name do
+    factory :district_invalid_name do
       name { '' }
     end
     factory :district_name_downcase do

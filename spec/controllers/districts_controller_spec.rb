@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DistrictsController, type: :controller do
-  let(:valid_session) { {} }
-  let(:district_with_valid_name) do
+  let(:valid) { {} }
+  let(:district_valid_name) do
     { name: 'Личаківський', city_id: district.city_id }
   end
 
-  let(:district_with_invalid_name) do
+  let(:district_invalid_name) do
     { name: '' }
   end
   let!(:id) { district.city_id }
@@ -15,20 +15,20 @@ RSpec.describe DistrictsController, type: :controller do
 
   let(:user_admin) { FactoryBot.create(:user_admin) }
 
-  let!(:district) { FactoryBot.create(:district_with_valid_name) }
+  let!(:district) { FactoryBot.create(:district_valid_name) }
 
   describe 'GET #new' do
     context 'sign_in with admin role' do
       it 'returns a success response' do
         login_with user_admin
-        get :new, params: { city_id: id }, session: valid_session
+        get :new, params: { city_id: id }, session: valid
         expect(response).to be_successful
       end
     end
     context 'sign_in with customer role' do
       it 'returns a not success response' do
         login_with user_customer
-        get :new, params: { city_id: id }, session: valid_session
+        get :new, params: { city_id: id }, session: valid
         expect(response).not_to be_successful
       end
     end
@@ -37,14 +37,14 @@ RSpec.describe DistrictsController, type: :controller do
     context 'sign_in with admin role' do
       it 'returns a success response' do
         login_with user_admin
-        get :edit, params: { city_id: id, id: district.to_param }, session: valid_session
+        get :edit, params: { city_id: id, id: district.to_param }, session: valid
         expect(response).to be_successful
       end
     end
     context 'sign_in with customer role' do
       it 'returns a not success response' do
         login_with user_customer
-        get :edit, params: { city_id: id, id: district.to_param }, session: valid_session
+        get :edit, params: { city_id: id, id: district.to_param }, session: valid
         expect(response).not_to be_successful
       end
     end
@@ -56,13 +56,13 @@ RSpec.describe DistrictsController, type: :controller do
         it 'creates a new District' do
           login_with user_admin
           expect do
-            post :create, params: { city_id: id, district: district_with_valid_name }, session: valid_session
+            post :create, params: { city_id: id, district: district_valid_name }, session: valid
           end.to change(District, :count).by(1)
         end
 
         it 'redirects to the cities list' do
           login_with user_admin
-          post :create, params: { city_id: id, district: district_with_valid_name }, session: valid_session
+          post :create, params: { city_id: id, district: district_valid_name }, session: valid
           expect(response).to redirect_to(cities_path)
         end
       end
@@ -70,7 +70,7 @@ RSpec.describe DistrictsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_admin
-          post :create, params: { city_id: id, district: district_with_invalid_name }, session: valid_session
+          post :create, params: { city_id: id, district: district_invalid_name }, session: valid
           expect(response).to be_successful
         end
       end
@@ -81,13 +81,13 @@ RSpec.describe DistrictsController, type: :controller do
         it 'not creates a new District' do
           login_with user_customer
           expect do
-            post :create, params: { city_id: id, district: district_with_valid_name }, session: valid_session
+            post :create, params: { city_id: id, district: district_valid_name }, session: valid
           end.to change(District, :count).by(0)
         end
 
         it 'redirects to the root_path' do
           login_with user_customer
-          post :create, params: { city_id: id, district: district_with_valid_name }, session: valid_session
+          post :create, params: { city_id: id, district: district_valid_name }, session: valid
           expect(response).to redirect_to(root_path)
         end
       end
@@ -95,7 +95,7 @@ RSpec.describe DistrictsController, type: :controller do
       context 'with invalid params' do
         it 'returns a not success response' do
           login_with user_customer
-          post :create, params: { city_id: id, district: district_with_invalid_name }, session: valid_session
+          post :create, params: { city_id: id, district: district_invalid_name }, session: valid
           expect(response).not_to be_successful
         end
       end
@@ -111,13 +111,13 @@ RSpec.describe DistrictsController, type: :controller do
 
         it 'updates the requested district' do
           login_with user_admin
-          put :update, params: { city_id: id, id: district.to_param, district: district_updated }, session: valid_session
+          put :update, params: { city_id: id, id: district.to_param, district: district_updated }, session: valid
           district.reload
         end
 
         it 'redirects to the district' do
           login_with user_admin
-          put :update, params: { city_id: id, id: district.to_param, district: district_with_valid_name }, session: valid_session
+          put :update, params: { city_id: id, id: district.to_param, district: district_valid_name }, session: valid
           expect(response).to redirect_to(cities_path)
         end
       end
@@ -125,7 +125,7 @@ RSpec.describe DistrictsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_admin
-          put :update, params: { city_id: id, id: district.to_param, district: district_with_invalid_name }, session: valid_session
+          put :update, params: { city_id: id, id: district.to_param, district: district_invalid_name }, session: valid
           expect(response).to be_successful
         end
       end
@@ -138,13 +138,13 @@ RSpec.describe DistrictsController, type: :controller do
 
         it 'not updates the requested district' do
           login_with user_customer
-          put :update, params: { city_id: id, id: district.to_param, district: district_updated }, session: valid_session
+          put :update, params: { city_id: id, id: district.to_param, district: district_updated }, session: valid
           district.reload
         end
 
         it 'redirects to the district' do
           login_with user_customer
-          put :update, params: { city_id: id, id: district.to_param, district: district_with_valid_name }, session: valid_session
+          put :update, params: { city_id: id, id: district.to_param, district: district_valid_name }, session: valid
           expect(response).to redirect_to(root_path)
         end
       end
@@ -152,7 +152,7 @@ RSpec.describe DistrictsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_customer
-          put :update, params: { city_id: id, id: district.to_param, district: district_with_invalid_name }, session: valid_session
+          put :update, params: { city_id: id, id: district.to_param, district: district_invalid_name }, session: valid
           expect(response).not_to be_successful
         end
       end
@@ -164,13 +164,13 @@ RSpec.describe DistrictsController, type: :controller do
       it 'destroys the requested district' do
         login_with user_admin
         expect do
-          delete :destroy, params: { city_id: id, id: district.to_param }, session: valid_session
+          delete :destroy, params: { city_id: id, id: district.to_param }, session: valid
         end.to change(District, :count).by(-1)
       end
 
       it 'redirects to the districts list' do
         login_with user_admin
-        delete :destroy, params: { city_id: id, id: district.to_param }, session: valid_session
+        delete :destroy, params: { city_id: id, id: district.to_param }, session: valid
         expect(response).to redirect_to(cities_path)
       end
     end
@@ -179,13 +179,13 @@ RSpec.describe DistrictsController, type: :controller do
       it 'not destroys the requested district' do
         login_with user_customer
         expect do
-          delete :destroy, params: { city_id: id, id: district.to_param }, session: valid_session
+          delete :destroy, params: { city_id: id, id: district.to_param }, session: valid
         end.to change(District, :count).by(0)
       end
 
       it 'redirects to the root path' do
         login_with user_customer
-        delete :destroy, params: { city_id: id, id: district.to_param }, session: valid_session
+        delete :destroy, params: { city_id: id, id: district.to_param }, session: valid
         expect(response).to redirect_to(root_path)
       end
     end

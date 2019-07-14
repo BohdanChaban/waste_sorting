@@ -9,7 +9,7 @@ class District < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: MIN_NAME_LENGTH, maximum: MAX_NAME_LENGTH }
   validates :name, format: { with: /\A[\'\ а-щА-ЩЬьЮюЯяЇїІіЄєҐґ-]+\z/ }
-  validates :name, uniqueness: true
+  validates_uniqueness_of :name, scope: [:city_id]
 
   private
 
