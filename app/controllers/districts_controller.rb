@@ -33,7 +33,7 @@ class DistrictsController < ApplicationController
   def update
     respond_to do |format|
       if @district.update(district_params)
-        format.html { redirect_to cities_path, notice: 'District was successfully updated.' }
+        format.html { redirect_to city_path(@district.city_id), notice: 'District was successfully updated.' }
         format.json { render :show, status: :ok, location: @district }
       else
         format.html { render :edit }
@@ -47,7 +47,7 @@ class DistrictsController < ApplicationController
   def destroy
     @district.destroy
     respond_to do |format|
-      format.html { redirect_to cities_path, notice: 'District was successfully destroyed.' }
+      format.html { redirect_to city_path(@district.city_id), notice: 'District was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

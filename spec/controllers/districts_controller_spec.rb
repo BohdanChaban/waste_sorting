@@ -118,7 +118,7 @@ RSpec.describe DistrictsController, type: :controller do
         it 'redirects to the district' do
           login_with user_admin
           put :update, params: { city_id: id, id: district.to_param, district: district_valid_name }, session: valid
-          expect(response).to redirect_to(cities_path)
+          expect(response).to redirect_to(city_path(district.city_id))
         end
       end
 
@@ -171,7 +171,7 @@ RSpec.describe DistrictsController, type: :controller do
       it 'redirects to the districts list' do
         login_with user_admin
         delete :destroy, params: { city_id: id, id: district.to_param }, session: valid
-        expect(response).to redirect_to(cities_path)
+        expect(response).to redirect_to(city_path(district.city_id))
       end
     end
 
