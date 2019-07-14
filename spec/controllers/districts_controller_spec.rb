@@ -63,7 +63,7 @@ RSpec.describe DistrictsController, type: :controller do
         it 'redirects to the cities list' do
           login_with user_admin
           post :create, params: { city_id: id, district: district_valid_name }, session: valid
-          expect(response).to redirect_to(cities_path)
+          expect(response).to redirect_to(city_path(district.city_id))
         end
       end
 
