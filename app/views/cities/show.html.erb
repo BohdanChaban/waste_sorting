@@ -17,6 +17,7 @@
         <td><%= district.name %></td>
         <%if current_user.admin?%> 
         <td><%= link_to "Edit Districs", edit_city_district_path(@city, district)%></td>
+        <td><%= link_to "Delete Districs", city_district_path(@city, district), method: :delete%></td>
         <% end %>
       </tr>
     <% end %>
