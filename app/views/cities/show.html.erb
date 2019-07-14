@@ -16,8 +16,8 @@
       <tr>
         <td><%= district.name %></td>
         <%if current_user.admin?%> 
-        <td><%= link_to "Edit Districs", edit_city_district_path(@city, district)%></td>
-        <td><%= link_to "Delete Districs", city_district_path(@city, district), method: :delete%></td>
+        <td><%= link_to "Edit", edit_city_district_path(@city, district)%></td>
+        <td><%= link_to "Delete", city_district_path(@city, district), method: :delete%></td>
         <% end %>
       </tr>
     <% end %>
@@ -26,7 +26,5 @@
 <%= link_to 'Back', cities_path %>
 
 <%if current_user.admin?%> 
-
-<%= link_to "Add Districs", new_city_district_path(@city) %>
-<%= link_to "Delete Districs" %>
+<%= link_to "Add Districts", new_city_district_path(@city) %>
 <% end %>
