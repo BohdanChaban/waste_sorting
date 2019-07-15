@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(_resource)
     current_user.account ? root_path : new_account_path
   end
-  
   private
 
   def check_admin_access
