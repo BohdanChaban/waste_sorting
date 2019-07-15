@@ -1,8 +1,31 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @city.name %>
 </p>
+<table>
+  <thead>
+    <tr>
+      <th>Districts</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'Back', root_path %>
+  <tbody> 	  
+    <% @city.districts.each do |district| %>
+      <tr>
+        <td><%= district.name %></td>
+        <% if current_user.admin? %> 
+        <td><%= link_to "Edit", edit_city_district_path(@city, district) %></td>
+        <td><%= link_to "Delete", city_district_path(@city, district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+<%= link_to 'Back', cities_path %>
+
+<%if current_user.admin?%> 
+<%= link_to "Add Districts", new_city_district_path(@city) %>
+<% end %>
