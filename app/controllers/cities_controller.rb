@@ -10,9 +10,7 @@ class CitiesController < ApplicationController
 
   # GET /cities/1
   # GET /cities/1.json
-  def show
-    @districts = District.all
-  end
+  def show; end
 
   # GET /cities/new
   def new
