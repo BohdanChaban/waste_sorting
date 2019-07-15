@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+  before_action :check_admin_access, except: %i[index show]
   before_action :set_city, only: %i[show]
 
   # GET /cities
