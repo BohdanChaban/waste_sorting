@@ -19,7 +19,7 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New City', new_city_path %>
+<% if current_user.admin? %> 
+  <%= link_to 'New City', new_city_path %>
+<% end %>

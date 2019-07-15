@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe City, type: :model do
+  context 'Associations' do
+    it 'has_many districts' do
+      assc = described_class.reflect_on_association(:districts)
+      expect(assc.macro).to eq :has_many
+    end
+  end
   context 'check validation of city' do
     it 'is valid with valid attributes' do
       city = FactoryBot.create(:city_with_valid_name)
