@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :abouts, only: %i[index edit update]
   resources :accounts, except: :destroy
   resources :articles
 

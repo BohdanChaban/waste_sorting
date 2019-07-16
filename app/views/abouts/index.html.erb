@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Abouts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @abouts.each do |about| %>
+      <tr>
+        <td><%= about.content %></td>
+        <%if current_user && current_user.admin? %> 
+          <td><%= link_to 'Edit', edit_about_path(about) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
