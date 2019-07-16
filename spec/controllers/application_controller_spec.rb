@@ -9,11 +9,14 @@ RSpec.describe ApplicationController, type: :controller do
   let(:account) { FactoryBot.create(:account) }
   let(:user) { FactoryBot.create(:user) }
 
-  it 'returns new account path' do
-    login_with user
-    expect(controller.after_sign_in_path_for(user))
-      .to eq(new_account_path)
+  context 'user without account' do
+    it 'returns new account path' do
+      login_with user
+      expect(controller.after_sign_in_path_for(user))
+        .to eq(new_account_path)
+    end
   end
+
   context 'user with account' do
     let(:user) { FactoryBot.create(:user, account: account) }
     it 'returns root path' do
