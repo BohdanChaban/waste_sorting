@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   skip_before_action :authenticate_user!
-  before_action :set_article, only: %i[show]
-  before_action :check_manager_access, only: %i[create new update destroy]
+  before_action :check_admin_access, except: %i[index show]
+  before_action :set_article, only: %i[show edit update destroy]
 
   def index
     @articles = Article.all
