@@ -1,50 +1,35 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Contacts</h1>
+<% if @contacts.blank? %>
+<div><p>Information would be added later</p></div>
+<% end %>
 <table> 
   <tbody>
     <% @contacts.each do |contact| %>
-      <tr>
-        <div class = "title"><b><%= contact.title %></b></div>
-      </tr>
-      <tr>
+     
+        <div class = "table_name"><b><%= contact.name %></b></td>
+      </div>
+     
       <%=show_non_blank_field "Adress", contact.address%>
-    </tr>
-    <tr>
+       
         <%= show_non_blank_field "Email", contact.email %>
-      </tr>
-      <tr>
+
         <%= show_non_blank_field "Mobile number", contact.mobile_number %>
-      </tr>
-      <tr>
+        
+       
         <%= show_non_blank_field "Facebook", contact.facebook %>
-      </tr>
-      <tr>
-        <%= show_non_blank_field "Instagram", contact.instagram %>
-      </tr>
-      <tr>
+       
+        <%= show_non_blank_field "Instagram", contact.instagram%>
+        
+        
+
+         
         <%= show_non_blank_field "Other info",contact.other_info%>
-      </tr>
-        <td><%= link_to 'Edit', edit_contact_path(contact) %>
-            <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      
+        <tr><td><%= link_to 'Edit', edit_contact_path(contact) %>
+            <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
     <% end %>
   </tbody>
 </table>
 <%= link_to 'New Contact', new_contact_path %>
-
-
-
-
-<div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-
-</div>
-
-

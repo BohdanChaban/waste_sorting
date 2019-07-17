@@ -5,6 +5,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.all
+    @field_names
   end
 
   # GET /contacts/new
@@ -64,6 +65,6 @@ class ContactsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def contact_params
-    params.require(:contact).permit(:title, :address, :email, :mobile_number, :facebook, :instagram, :other_info)
+    params.require(:contact).permit(:name, :address, :email, :mobile_number, :facebook, :instagram, :other_info)
   end
 end

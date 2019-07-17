@@ -1,5 +1,9 @@
 module ContactsHelper
   def show_non_blank_field(label, value)
-    content_tag(:th, "#{label}:", colspan: ['3']) + content_tag(:td, value.to_s) unless value.blank?
+    "<tr><th>#{label}:</th><td>#{show_as_link(value)}</td></tr>".html_safe unless value.blank?
+  end
+
+  def show_as_link(value)
+    value.match(%r{^(http|https)://}) ? "<a href=#{value}>#{value}</a>".html_safe : value
   end
 end
