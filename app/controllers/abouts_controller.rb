@@ -4,7 +4,7 @@ class AboutsController < ApplicationController
   before_action :set_about, only: %i[edit update]
 
   def index
-    @abouts = About.all
+    @about = About.last
   end
 
   def edit; end

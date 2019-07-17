@@ -6,7 +6,7 @@ RSpec.describe About, type: :model do
       about = FactoryBot.create(:about)
       expect(about).to be_valid
     end
-    it 'is valid with valid attributes' do
+    it 'is valid with invalid attributes' do
       about = FactoryBot.build(:about_invalid)
       expect(about).to_not be_valid
     end
