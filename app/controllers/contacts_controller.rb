@@ -1,11 +1,12 @@
 class ContactsController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
+  before_action :check_admin_access, except: :index
   before_action :set_contact, only: %i[edit update destroy]
 
   # GET /contacts
   # GET /contacts.json
   def index
     @contacts = Contact.all
-    @field_names
   end
 
   # GET /contacts/new

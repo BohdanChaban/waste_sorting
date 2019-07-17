@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :contacts
+  resources :contacts, except: :show
   resources :accounts, except: :destroy
   resources :articles
 
