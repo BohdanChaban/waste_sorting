@@ -4,14 +4,13 @@
 <% if @contacts.blank? %>
 <div><p>Information would be added later</p></div>
 <% end %>
-<table> 
   <tbody>
     <% @contacts.each do |contact| %>
     <table>
         <tr><div class = "table_name"><b><%= contact.name %></b></div>
-      </tr>
+       </tr>
 
-        <%=show_non_blank_field "Address", contact.address %>
+      <%=show_non_blank_field "Address", contact.address %>
        
         <%= show_non_blank_field "Email", contact.email %>
 
@@ -25,10 +24,9 @@
       
         <tr><td><%= link_to 'Edit', edit_contact_path(contact) %>
             <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
+    </table>
     <% end %>
   </tbody>
-</table>
-</table>
 <% if current_user && current_user.admin?%> 
 <%= link_to 'New Contact', new_contact_path %>
 <% end %>
