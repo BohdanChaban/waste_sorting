@@ -13,7 +13,7 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    { name: '' }
+    { name: "Head Office Waste Sorting LTD and Local Office Waste Sorting LTD" }
   end
 
   let(:user_customer) { FactoryBot.create(:user_customer) }
@@ -91,7 +91,7 @@ RSpec.describe ContactsController, type: :controller do
         end
       end
 
-      xcontext 'with invalid params' do
+      context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_admin
           post :create, params: { contact: invalid_attributes }, session: valid

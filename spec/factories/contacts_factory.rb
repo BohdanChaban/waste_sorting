@@ -10,7 +10,7 @@ FactoryBot.define do
       other_info { 'Zip Code: 79000' }
     end
     factory :invalid_attributes do
-      name { '' }
+      name { "Head Office Waste Sorting LTD and Local Office Waste Sorting LTD" }
     end
   end
 end
