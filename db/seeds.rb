@@ -10,7 +10,7 @@ Contact.create(name: 'Head Office Waste Sorting LTD',
                email: 'head@office.com',
                mobile_number: '+38000000000',
                facebook: 'http://fb.com/waste_sorting',
-               instagram: 'instagram.com/waste_sorting',
+               instagram: 'https://instagram.com/waste_sorting',
                other_info: 'Zip Code: 79000')
 
 About.create(content: 'HELLOYYYYYYYYYYYYYYY')

@@ -7,10 +7,11 @@
 <table> 
   <tbody>
     <% @contacts.each do |contact| %>
-        <div class = "table_name"><b><%= contact.name %></b></td>
-      </div>
-     
-      <%=show_non_blank_field "Address", contact.address %>
+    <table>
+        <tr><div class = "table_name"><b><%= contact.name %></b></div>
+      </tr>
+
+        <%=show_non_blank_field "Address", contact.address %>
        
         <%= show_non_blank_field "Email", contact.email %>
 
@@ -26,6 +27,7 @@
             <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
     <% end %>
   </tbody>
+</table>
 </table>
 <% if current_user && current_user.admin?%> 
 <%= link_to 'New Contact', new_contact_path %>
