@@ -13,7 +13,7 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    { name: "Head Office Waste Sorting LTD and Local Office Waste Sorting LTD" }
+    { name: 'Head Office Waste Sorting LTD and Local Office Waste Sorting LTD' }
   end
 
   let(:user_customer) { FactoryBot.create(:user_customer) }
@@ -126,7 +126,7 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   describe 'PUT #update' do
-    xcontext 'sign_in with admin role' do
+    context 'sign_in with admin role' do
       context 'with updated params' do
         let(:updated_attributes) do
           { address: 'Шевченка 111а' }
@@ -183,17 +183,34 @@ RSpec.describe ContactsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    xit 'destroys the requested contact' do
-      contact = Contact.create! valid_attributes
-      expect do
+    context 'sign_in with admin role' do
+      it 'destroys the requested contact' do
+        login_with user_admin
+        expect do
+          delete :destroy, params: { id: contact.to_param }, session: valid
+        end.to change(Contact, :count).by(-1)
+      end
+
+      it 'redirects to the contacts list' do
+        login_with user_admin
         delete :destroy, params: { id: contact.to_param }, session: valid
-      end.to change(Contact, :count).by(-1)
+        expect(response).to redirect_to(contacts_path)
+      end
     end
 
-    xit 'redirects to the contacts list' do
-      contact = Contact.create! valid_attributes
-      delete :destroy, params: { id: contact.to_param }, session: valid
-      expect(response).to redirect_to(contacts_url)
+    context 'sign_in with customer role' do
+      it 'destroys the requested contact' do
+        login_with user_customer
+        expect do
+          delete :destroy, params: { id: contact.to_param }, session: valid
+        end.to change(Contact, :count).by(-0)
+      end
+
+      it 'redirects to the contacts list' do
+        login_with user_customer
+        delete :destroy, params: { id: contact.to_param }, session: valid
+        expect(response).to redirect_to(root_path)
+      end
     end
   end
 end
