@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+<<<<<<< HEAD
 Contact.create(name: 'Head Office Waste Sorting LTD',
                address: 'Shevchenka St, 111A, Lviv',
                email: 'head@office.com',
@@ -12,3 +13,6 @@ Contact.create(name: 'Head Office Waste Sorting LTD',
                facebook: 'http://fb.com/waste_sorting',
                instagram: 'instagram.com/waste_sorting',
                other_info: 'Zip Code: 79000')
+=======
+About.create(content: 'HELLOYYYYYYYYYYYYYYY')
+>>>>>>> origin/master
