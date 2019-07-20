@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :account
+  has_many :timeslots
 
   EMAIL_LENGTH = (6..50).freeze
   ROLES = %w[customer manager admin].freeze

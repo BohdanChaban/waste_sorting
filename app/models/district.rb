@@ -5,6 +5,7 @@ class District < ApplicationRecord
   before_validation :capitalize_name
 
   belongs_to :city
+  has_many :timeslots
 
   validates :name, presence: true
   validates :name, length: { minimum: MIN_NAME_LENGTH, maximum: MAX_NAME_LENGTH }

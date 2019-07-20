@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :timeslots
   resources :accounts, except: :destroy
   resources :articles
 
