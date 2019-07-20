@@ -23,7 +23,7 @@ class TimeslotsController < ApplicationController
   def edit; end
 
   def create
-    if(current_user&.admin?) || (current_user&.manager?)
+    if (current_user&.admin?) || (current_user&.manager?)
       @timeslot = Timeslot.new(timeslot_params)
       @timeslot.user = current_user
       @timeslot.district = District.last
