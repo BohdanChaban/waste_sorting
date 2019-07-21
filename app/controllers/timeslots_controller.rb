@@ -12,9 +12,7 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  def show
-    @timeslot = Timeslot.find(params[:id])
-  end
+  def show; end
 
   def new
     @timeslot = Timeslot.new
@@ -23,18 +21,15 @@ class TimeslotsController < ApplicationController
   def edit; end
 
   def create
-    if (current_user&.admin?) || (current_user&.manager?)
-      @timeslot = Timeslot.new(timeslot_params)
-      @timeslot.user = current_user
-      @timeslot.district = District.last
-      respond_to do |format|
-        if @timeslot.save
-          format.html { redirect_to @timeslot, notice: 'Timeslot was successfully created.' }
-          format.json { render :show, status: :created, location: @timeslot }
-        else
-          format.html { render :new }
-          format.json { render json: @timeslot.errors, status: :unprocessable_entity }
-        end
+    @timeslot = Timeslot.new(timeslot_params)
+    @timeslot.user = current_user
+    respond_to do |format|
+      if @timeslot.save
+        format.html { redirect_to @timeslot, notice: 'Timeslot was successfully created.' }
+        format.json { render :show, status: :created, location: @timeslot }
+      else
+        format.html { render :new }
+        format.json { render json: @timeslot.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,6 +61,6 @@ class TimeslotsController < ApplicationController
   end
 
   def timeslot_params
-    params.require(:timeslot).permit(:start_time, :user, :district_id)
+    params.require(:timeslot).permit(:start_time, :user_id, :district_id)
   end
 end

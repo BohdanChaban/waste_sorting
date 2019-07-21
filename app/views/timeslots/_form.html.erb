@@ -14,7 +14,12 @@
   <div class="field">
     <%= form.label :start_time %>
     <%= form.datetime_select :start_time %>
+    </div>
+    <div class="field">
+    <%= form.collection_select(:district_id, District.all, :id, :name)
+    %>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>

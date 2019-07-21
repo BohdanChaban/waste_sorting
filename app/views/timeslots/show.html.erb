@@ -5,5 +5,5 @@
   <%= @timeslot.start_time %>
 </p>
 
-<%= link_to 'Edit', edit_timeslot_path(@timeslot) %> |
+<%= link_to 'Edit', edit_timeslot_path(@timeslot) unless current_user&.customer? %> 
 <%= link_to 'Back', timeslots_path %>

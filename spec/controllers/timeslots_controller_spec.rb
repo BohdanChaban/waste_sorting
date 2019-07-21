@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe TimeslotsController, type: :controller do
   let(:valid_session) { {} }
   let(:valid_time) do
-    { start_time: Time.new(2019) }
+    { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00'), district_id: district.id }
   end
 
   let(:invalid_time) do
