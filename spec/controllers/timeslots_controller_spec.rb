@@ -5,9 +5,14 @@ RSpec.describe TimeslotsController, type: :controller do
   let(:valid_time) do
     { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00'), district_id: district.id }
   end
-
+  let(:valid_time_update) do
+    { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00') }
+  end
   let(:invalid_time) do
     { start_time: ' ' }
+  end
+  let(:district_valid_name) do
+    { name: 'Львівський', city_id: district.city_id }
   end
   let(:user_customer) { FactoryBot.create(:user_customer) }
   let(:user_manager) { FactoryBot.create(:user_manager) }
@@ -191,14 +196,14 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with valid params' do
         it 'updates the requested timeslot' do
           login_with user_customer
-          put :update, params: { id: timeslot.to_param, timeslot: valid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: valid_time_update }, session: valid_session
           timeslot.reload
-          expect(timeslot.start_time).to eql(valid_time[:start_time])
+          expect(timeslot.start_time).to eql(valid_time_update[:start_time])
         end
 
         it 'redirects to the timeslot' do
           login_with user_customer
-          put :update, params: { id: timeslot.to_param, timeslot: valid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: valid_time_update }, session: valid_session
           expect(response).to redirect_to(root_path)
         end
       end
@@ -214,14 +219,14 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with valid params' do
         it 'updates the requested timeslot' do
           login_with user_manager
-          put :update, params: { id: timeslot.to_param, timeslot: valid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: valid_time_update }, session: valid_session
           timeslot.reload
-          expect(timeslot.start_time).to eql(valid_time[:start_time])
+          expect(timeslot.start_time).to eql(valid_time_update[:start_time])
         end
 
         it 'redirects to the timeslot' do
           login_with user_manager
-          put :update, params: { id: timeslot.to_param, timeslot: valid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: valid_time_update }, session: valid_session
           expect(response).to redirect_to(timeslot)
         end
       end
@@ -238,14 +243,14 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with valid params' do
         it 'updates the requested timeslot' do
           login_with user_admin
-          put :update, params: { id: timeslot.to_param, timeslot: valid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: valid_time_update }, session: valid_session
           timeslot.reload
-          expect(timeslot.start_time).to eql(valid_time[:start_time])
+          expect(timeslot.start_time).to eql(valid_time_update[:start_time])
         end
 
         it 'redirects to the timeslot' do
           login_with user_admin
-          put :update, params: { id: timeslot.to_param, timeslot: valid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: valid_time_update }, session: valid_session
           expect(response).to redirect_to(timeslot)
         end
       end
@@ -262,6 +267,7 @@ RSpec.describe TimeslotsController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'sign_in with user_customer role' do
+      let!(:timeslot) { FactoryBot.create(:valid_time) }
       it 'destroys the requested timeslot' do
         login_with user_customer
         expect do
@@ -276,6 +282,7 @@ RSpec.describe TimeslotsController, type: :controller do
       end
     end
     context 'sign_in with user_manager roles' do
+      let!(:timeslot) { FactoryBot.create(:valid_time) }
       it 'destroys the requested timeslot' do
         login_with user_manager
         expect do
@@ -290,6 +297,7 @@ RSpec.describe TimeslotsController, type: :controller do
       end
     end
     context 'sign_in with user_admin role' do
+      let!(:timeslot) { FactoryBot.create(:valid_time) }
       it 'destroys the requested timeslot' do
         login_with user_admin
         expect do

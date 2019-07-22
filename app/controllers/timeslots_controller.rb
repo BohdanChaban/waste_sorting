@@ -1,5 +1,5 @@
 class TimeslotsController < ApplicationController
-  before_action :check_manager_access, except: %i[index show]
+  before_action :check_full_access, except: %i[index show]
   before_action :set_timeslot, only: %i[show edit update destroy]
 
   def index
@@ -35,6 +35,7 @@ class TimeslotsController < ApplicationController
   end
 
   def update
+    @timeslot.user = current_user
     respond_to do |format|
       if @timeslot.update(timeslot_params)
         format.html { redirect_to @timeslot, notice: 'Timeslot was successfully updated.' }
