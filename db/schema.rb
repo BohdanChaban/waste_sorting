@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(version: 2019_07_16_141901) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "email"
+    t.string "mobile_number"
+    t.string "facebook"
+    t.string "instagram"
+    t.string "other_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "districts", force: :cascade do |t|
     t.string "name"
     t.bigint "city_id"
