@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe TimeslotsController, type: :controller do
   let(:valid_session) { {} }
-  let(:valid_time) do
+  let(:timeslot_valid_time) do
     { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00'), district_id: district.id }
   end
   let(:valid_time_update) do
     { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00') }
   end
-  let(:invalid_time) do
+  let(:timeslot_invalid_time) do
     { start_time: ' ' }
   end
   let(:district_valid_name) do
@@ -18,7 +18,7 @@ RSpec.describe TimeslotsController, type: :controller do
   let(:user_manager) { FactoryBot.create(:user_manager) }
   let(:user_admin) { FactoryBot.create(:user_admin) }
   let(:district) { FactoryBot.create(:district_valid_name) }
-  let(:timeslot) { FactoryBot.create(:valid_time) }
+  let(:timeslot) { FactoryBot.create(:timeslot_valid_time) }
 
   describe 'GET #index' do
     context 'sign_in with user_customer role' do
@@ -122,13 +122,13 @@ RSpec.describe TimeslotsController, type: :controller do
         it 'creates a new Timeslot' do
           login_with user_customer
           expect do
-            post :create, params: { timeslot: valid_time }, session: valid_session
+            post :create, params: { timeslot: timeslot_valid_time }, session: valid_session
           end.to change(Timeslot, :count).by(0)
         end
 
         it 'redirects to the created timeslot' do
           login_with user_customer
-          post :create, params: { timeslot: valid_time }, session: valid_session
+          post :create, params: { timeslot: timeslot_valid_time }, session: valid_session
           expect(response).to redirect_to(root_path)
         end
       end
@@ -136,7 +136,7 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_customer
-          post :create, params: { timeslot: invalid_time }, session: valid_session
+          post :create, params: { timeslot: timeslot_invalid_time }, session: valid_session
           expect(response).not_to be_successful
         end
       end
@@ -146,13 +146,13 @@ RSpec.describe TimeslotsController, type: :controller do
         it 'creates a new Timeslot' do
           login_with user_manager
           expect do
-            post :create, params: { timeslot: valid_time }, session: valid_session
+            post :create, params: { timeslot: timeslot_valid_time }, session: valid_session
           end.to change(Timeslot, :count).by(1)
         end
 
         it 'redirects to the created timeslot' do
           login_with user_manager
-          post :create, params: { timeslot: valid_time }, session: valid_session
+          post :create, params: { timeslot: timeslot_valid_time }, session: valid_session
           expect(response).to redirect_to(Timeslot.last)
         end
       end
@@ -160,7 +160,7 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_manager
-          post :create, params: { timeslot: invalid_time }, session: valid_session
+          post :create, params: { timeslot: timeslot_invalid_time }, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -170,13 +170,13 @@ RSpec.describe TimeslotsController, type: :controller do
         it 'creates a new Timeslot' do
           login_with user_admin
           expect do
-            post :create, params: { timeslot: valid_time }, session: valid_session
+            post :create, params: { timeslot: timeslot_valid_time }, session: valid_session
           end.to change(Timeslot, :count).by(1)
         end
 
         it 'redirects to the created timeslot' do
           login_with user_admin
-          post :create, params: { timeslot: valid_time }, session: valid_session
+          post :create, params: { timeslot: timeslot_valid_time }, session: valid_session
           expect(response).to redirect_to(Timeslot.last)
         end
       end
@@ -184,7 +184,7 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_admin
-          post :create, params: { timeslot: invalid_time }, session: valid_session
+          post :create, params: { timeslot: timeslot_invalid_time }, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -210,7 +210,7 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_customer
-          put :update, params: { id: timeslot.to_param, timeslot: invalid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: timeslot_invalid_time }, session: valid_session
           expect(response).not_to be_successful
         end
       end
@@ -234,7 +234,7 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_manager
-          put :update, params: { id: timeslot.to_param, timeslot: invalid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: timeslot_invalid_time }, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -258,7 +258,7 @@ RSpec.describe TimeslotsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_admin
-          put :update, params: { id: timeslot.to_param, timeslot: invalid_time }, session: valid_session
+          put :update, params: { id: timeslot.to_param, timeslot: timeslot_invalid_time }, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -267,7 +267,7 @@ RSpec.describe TimeslotsController, type: :controller do
 
   describe 'DELETE #destroy' do
     context 'sign_in with user_customer role' do
-      let!(:timeslot) { FactoryBot.create(:valid_time) }
+      let!(:timeslot) { FactoryBot.create(:timeslot_valid_time) }
       it 'destroys the requested timeslot' do
         login_with user_customer
         expect do
@@ -282,7 +282,7 @@ RSpec.describe TimeslotsController, type: :controller do
       end
     end
     context 'sign_in with user_manager roles' do
-      let!(:timeslot) { FactoryBot.create(:valid_time) }
+      let!(:timeslot) { FactoryBot.create(:timeslot_valid_time) }
       it 'destroys the requested timeslot' do
         login_with user_manager
         expect do
@@ -297,7 +297,7 @@ RSpec.describe TimeslotsController, type: :controller do
       end
     end
     context 'sign_in with user_admin role' do
-      let!(:timeslot) { FactoryBot.create(:valid_time) }
+      let!(:timeslot) { FactoryBot.create(:timeslot_valid_time) }
       it 'destroys the requested timeslot' do
         login_with user_admin
         expect do

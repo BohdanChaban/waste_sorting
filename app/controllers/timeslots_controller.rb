@@ -3,13 +3,7 @@ class TimeslotsController < ApplicationController
   before_action :set_timeslot, only: %i[show edit update destroy]
 
   def index
-    if current_user.role == 'manager'
-      @timeslots = current_user.timeslots
-    elsif current_user.role == 'customer'
-      @timeslots = Timeslot.select { |t| t.district.city == current_user.account.city }
-    elsif current_user.role == 'admin'
-      @timeslots = Timeslot.all
-    end
+    @timeslots = TimeslotService.new(current_user).check_role
   end
 
   def show; end

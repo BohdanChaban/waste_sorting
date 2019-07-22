@@ -3,7 +3,8 @@
 <p>
   <strong>Time slot:</strong>
   <%= @timeslot.start_time %>
+  <%= @timeslot.district.name %>
 </p>
 
-<%= link_to 'Edit', edit_timeslot_path(@timeslot) unless current_user&.customer? %> 
+<%= link_to 'Edit', edit_timeslot_path(@timeslot) unless current_user&.customer? %>
 <%= link_to 'Back', timeslots_path %>
