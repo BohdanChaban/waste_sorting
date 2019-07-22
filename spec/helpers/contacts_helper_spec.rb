@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ContactsHelper, type: :helper do
   describe '#show_non_blank_field' do
-    let!(:contact) { FactoryBot.create(:valid_attributes) }
+    let!(:contact) { FactoryBot.create(:contact_valid_attributes) }
 
     let(:label) do
       { address: 'Address',

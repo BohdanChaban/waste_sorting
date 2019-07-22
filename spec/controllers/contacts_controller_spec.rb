@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ContactsController, type: :controller do
   let(:valid) { {} }
-  let(:valid_attributes) do
+  let(:contact_valid_attributes) do
     { name: 'Head Office Waste Sorting LTD',
       address: 'Shevchenka St, 111A, Lviv',
       email: 'head@office.com',
@@ -12,7 +12,7 @@ RSpec.describe ContactsController, type: :controller do
       other_info: 'Zip Code: 79000' }
   end
 
-  let(:invalid_attributes) do
+  let(:contact_invalid_attributes) do
     { name: 'Head Office Waste Sorting LTD and Local Office Waste Sorting LTD' }
   end
 
@@ -20,7 +20,7 @@ RSpec.describe ContactsController, type: :controller do
 
   let(:user_admin) { FactoryBot.create(:user_admin) }
 
-  let!(:contact) { FactoryBot.create(:valid_attributes) }
+  let!(:contact) { FactoryBot.create(:contact_valid_attributes) }
 
   describe 'GET #index' do
     context 'sign_in with admin role' do
@@ -80,13 +80,13 @@ RSpec.describe ContactsController, type: :controller do
         it 'creates a new Contact' do
           login_with user_admin
           expect do
-            post :create, params: { contact: valid_attributes }, session: valid
+            post :create, params: { contact: contact_valid_attributes }, session: valid
           end.to change(Contact, :count).by(1)
         end
 
         it 'redirects to the created contact' do
           login_with user_admin
-          post :create, params: { contact: valid_attributes }, session: valid
+          post :create, params: { contact: contact_valid_attributes }, session: valid
           expect(response).to redirect_to(contacts_path)
         end
       end
@@ -94,7 +94,7 @@ RSpec.describe ContactsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_admin
-          post :create, params: { contact: invalid_attributes }, session: valid
+          post :create, params: { contact: contact_invalid_attributes }, session: valid
           expect(response).to be_successful
         end
       end
@@ -104,13 +104,13 @@ RSpec.describe ContactsController, type: :controller do
         it 'creates a new Contact' do
           login_with user_customer
           expect do
-            post :create, params: { contact: valid_attributes }, session: valid
+            post :create, params: { contact: contact_valid_attributes }, session: valid
           end.to change(Contact, :count).by(0)
         end
 
         it 'redirects to root_path' do
           login_with user_customer
-          post :create, params: { contact: valid_attributes }, session: valid
+          post :create, params: { contact: contact_valid_attributes }, session: valid
           expect(response).to redirect_to(root_path)
         end
       end
@@ -118,7 +118,7 @@ RSpec.describe ContactsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_customer
-          post :create, params: { contact: invalid_attributes }, session: valid
+          post :create, params: { contact: contact_invalid_attributes }, session: valid
           expect(response).not_to be_successful
         end
       end
@@ -128,19 +128,19 @@ RSpec.describe ContactsController, type: :controller do
   describe 'PUT #update' do
     context 'sign_in with admin role' do
       context 'with updated params' do
-        let(:updated_attributes) do
+        let(:contact_updated_attributes) do
           { address: 'Шевченка 111а' }
         end
 
         it 'updates the requested contact' do
           login_with user_admin
-          put :update, params: { id: contact.to_param, contact: updated_attributes }, session: valid
+          put :update, params: { id: contact.to_param, contact: contact_updated_attributes }, session: valid
           contact.reload
         end
 
         it 'redirects to the contact' do
           login_with user_admin
-          put :update, params: { id: contact.to_param, contact: valid_attributes }, session: valid
+          put :update, params: { id: contact.to_param, contact: contact_valid_attributes }, session: valid
           expect(response).to redirect_to(contacts_path)
         end
       end
@@ -148,26 +148,26 @@ RSpec.describe ContactsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_admin
-          put :update, params: { id: contact.to_param, contact: invalid_attributes }, session: valid
+          put :update, params: { id: contact.to_param, contact: contact_invalid_attributes }, session: valid
           expect(response).to be_successful
         end
       end
     end
     context 'sign_in with customer role' do
       context 'with updated params' do
-        let(:updated_attributes) do
+        let(:contact_updated_attributes) do
           { address: 'Шевченка 111а' }
         end
 
         it 'updates the requested contact' do
           login_with user_customer
-          put :update, params: { id: contact.to_param, contact: updated_attributes }, session: valid
+          put :update, params: { id: contact.to_param, contact: contact_updated_attributes }, session: valid
           contact.reload
         end
 
         it 'redirects to root_path' do
           login_with user_customer
-          put :update, params: { id: contact.to_param, contact: valid_attributes }, session: valid
+          put :update, params: { id: contact.to_param, contact: contact_valid_attributes }, session: valid
           expect(response).to redirect_to(root_path)
         end
       end
@@ -175,7 +175,7 @@ RSpec.describe ContactsController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_customer
-          put :update, params: { id: contact.to_param, contact: invalid_attributes }, session: valid
+          put :update, params: { id: contact.to_param, contact: contact_invalid_attributes }, session: valid
           expect(response).not_to be_successful
         end
       end
