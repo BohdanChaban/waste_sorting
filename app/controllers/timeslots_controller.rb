@@ -3,7 +3,7 @@ class TimeslotsController < ApplicationController
   before_action :set_timeslot, only: %i[show edit update destroy]
 
   def index
-    @timeslots = TimeslotService.new(current_user).check_role
+    @timeslots = TimeslotService.new(current_user).timeslot_check_role
   end
 
   def show; end
@@ -15,8 +15,7 @@ class TimeslotsController < ApplicationController
   def edit; end
 
   def create
-    @timeslot = Timeslot.new(timeslot_params)
-    @timeslot.user = current_user
+    new_timeslot
     respond_to do |format|
       if @timeslot.save
         format.html { redirect_to @timeslot, notice: 'Timeslot was successfully created.' }
@@ -57,5 +56,10 @@ class TimeslotsController < ApplicationController
 
   def timeslot_params
     params.require(:timeslot).permit(:start_time, :user_id, :district_id)
+  end
+
+  def new_timeslot
+    @timeslot = Timeslot.new(timeslot_params)
+    @timeslot.user = current_user
   end
 end
