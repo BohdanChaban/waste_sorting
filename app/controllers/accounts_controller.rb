@@ -10,10 +10,12 @@ class AccountsController < ApplicationController
   def new
     @account = Account.new
     @cities = City.all
+    @districts = District.all
   end
 
   def edit
     @cities = City.all
+    @districts = District.all
   end
 
   def create
@@ -48,7 +50,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:name, :surname, :address, :mobile_number, :city_id)
+    params.require(:account).permit(:name, :surname, :address, :mobile_number, :city_id,:district_id)
   end
 
   def new_account

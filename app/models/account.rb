@@ -1,7 +1,8 @@
 class Account < ApplicationRecord
   belongs_to :user,  optional: false
   belongs_to :city,  optional: false
-
+  belongs_to :district
+  
   MAX_NAME_LENGTH = 25
   MAX_SURNAME_LENGTH = 25
   MIN_MOBILE_NUMBER = 10

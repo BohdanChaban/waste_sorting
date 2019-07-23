@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :account do
     association :user, factory: :user
     association :city, factory: :city_with_valid_name
+    association :district, factory: :district_valid_name
 
     name { 'Name' }
     surname { 'Surname' }

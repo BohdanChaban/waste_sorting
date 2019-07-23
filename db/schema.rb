@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 2019_07_16_141901) do
     t.string "mobile_number"
     t.bigint "user_id"
     t.bigint "city_id"
+    t.bigint "district_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_accounts_on_city_id"
+    t.index ["district_id"], name: "index_accounts_on_district_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 

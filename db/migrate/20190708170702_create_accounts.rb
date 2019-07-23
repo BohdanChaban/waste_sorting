@@ -7,6 +7,7 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
       t.string :mobile_number
       t.belongs_to :user, index: true
       t.belongs_to :city, index: true
+      t.belongs_to :district, index: true
       t.timestamps
     end
   end
