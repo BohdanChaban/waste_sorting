@@ -1,6 +1,6 @@
 namespace :db do
-  desc 'TODO'
-  task my_task: :environment do
+  desc 'Generating dev data'
+  task add_data_to_db: :environment do
     user = User.create!(email: 'manager@example.com', password: '123456', role: 'manager')
     user1 = User.create!(email: 'admin@example.com', password: '123456', role: 'admin')
     user2 = User.create!(email: 'customer@example.com', password: '123456', role: 'customer')
