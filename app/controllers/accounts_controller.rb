@@ -50,7 +50,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:name, :surname, :address, :mobile_number, :city_id,:district_id)
+    params.require(:account).permit(:name, :surname, :address, :mobile_number, :city_id, :district_id)
   end
 
   def new_account
