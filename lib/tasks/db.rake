@@ -1,4 +1,4 @@
-namespace :db do
+namespace :db_filling do
   desc 'Generating dev data'
   task add_data_to_db: :environment do
     user = User.create!(email: 'manager@example.com', password: '123456', role: 'manager')
