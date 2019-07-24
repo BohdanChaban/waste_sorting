@@ -3,7 +3,7 @@ class TimeslotsController < ApplicationController
   before_action :set_timeslot, only: %i[show edit update destroy]
 
   def index
-    @timeslots = TimeslotService.new(current_user).timeslot_check_role
+    @timeslots = TimeslotService.new(current_user).call
   end
 
   def show; end

@@ -3,13 +3,13 @@ class TimeslotService
     @user = user
   end
 
-  def timeslot_check_role
-    if @user&.manager?
+  def call
+    if @user&.admin?
+      Timeslot.all
+    elsif @user&.manager?
       @user.timeslots
     elsif @user&.customer?
       Timeslot.select { |t| t.district.city == @user.account.city }
-    elsif @user&.admin?
-      Timeslot.all
     end
   end
 end
