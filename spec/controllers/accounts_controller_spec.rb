@@ -7,7 +7,6 @@ RSpec.describe AccountsController, type: :controller do
       surname: 'Surname',
       address: 'Шевченка, 77',
       mobile_number: '+380998765952',
-      city_id: account.city_id ,
       district_id: account.district_id
     }
   end
