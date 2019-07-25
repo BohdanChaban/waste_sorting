@@ -1,8 +1,10 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update]
-
+  before_action :check_admin_access, only: %i[index]
   def index
     @accounts = Account.all
+
+    # binding.pry;
   end
 
   def show; end
@@ -44,7 +46,8 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = Account.find(params[:id])
+    @accounts = Account.find(params[:id])
+    @account = current_user.account
   end
 
   def account_params
@@ -54,5 +57,6 @@ class AccountsController < ApplicationController
   def new_account
     @account = Account.new(account_params)
     @account.user = current_user
+    # binding.pry;
   end
 end
