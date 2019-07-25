@@ -1,6 +1,6 @@
 class Account < ApplicationRecord
   belongs_to :user,  optional: false
-  belongs_to :district, -> { User.customer },inverse_of: false, optional: false
+  belongs_to :district, -> { User.customer }, inverse_of: false, optional: false
   
   MAX_NAME_LENGTH = 25
   MAX_SURNAME_LENGTH = 25

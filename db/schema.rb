@@ -68,6 +68,16 @@ ActiveRecord::Schema.define(version: 2019_07_25_101932) do
     t.index ["city_id"], name: "index_districts_on_city_id"
   end
 
+  create_table "timeslots", force: :cascade do |t|
+    t.datetime "start_time"
+    t.bigint "district_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["district_id"], name: "index_timeslots_on_district_id"
+    t.index ["user_id"], name: "index_timeslots_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

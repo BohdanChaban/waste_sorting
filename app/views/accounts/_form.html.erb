@@ -32,22 +32,11 @@
   </div>
   
   <div class="field">
-    <%= form.label :city_id, "City" %>
-    <% if @cities %>  
-      <%= form.select(:city_id) do %>
-        <% @cities.each do |c| -%>
-          <%= content_tag(:option, c.name, value: c.id) %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
-  
-  <div class="field">
     <%= form.label :district_id, "District" %>
     <% if @districts %>  
       <%= form.select(:district_id) do %>
-        <% @districts.each do |c| -%>
-          <%= content_tag(:option, c.name, value: c.id) %>
+        <% @districts.each do |d| -%>
+          <%= content_tag(:option, "#{d.name}, #{d.city.name}", value: d.id) %>
         <% end %>
       <% end %>
     <% end %>
