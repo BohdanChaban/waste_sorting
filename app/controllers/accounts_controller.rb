@@ -3,8 +3,6 @@ class AccountsController < ApplicationController
   before_action :check_admin_access, only: %i[index]
   def index
     @accounts = Account.all
-
-    # binding.pry;
   end
 
   def show; end
@@ -57,6 +55,5 @@ class AccountsController < ApplicationController
   def new_account
     @account = Account.new(account_params)
     @account.user = current_user
-    # binding.pry;
   end
 end
