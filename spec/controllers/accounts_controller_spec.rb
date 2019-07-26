@@ -1,30 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe AccountsController, type: :controller do
-  
   let(:valid_account) do
     { name: 'Name',
       surname: 'Surname',
       address: 'Шевченка, 77',
       mobile_number: '+380998765952',
-      district_id: account.district_id
-    }
+      district_id: account.district_id }
   end
 
   let(:invalid_account) do
     { name: ' ',
       surname: ' ',
       address: ' ',
-      mobile_number: '+38099' 
-    }
+      mobile_number: '+38099' }
   end
 
   let(:account) { FactoryBot.create(:account) }
-   
+
   let(:valid_session) { {} }
 
   let(:user) { account.user }
-  
+
   describe 'GET #index' do
     it 'returns a success response' do
       login_with user

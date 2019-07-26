@@ -1,12 +1,10 @@
-require 'faker'
-
 FactoryBot.define do
   factory :account do
     association :user, factory: :user
-    
+
     association :district, factory: :district_valid_name
 
-    name { Faker::Name.name } 
+    name { 'Name' }
     surname { 'Surname' }
     address { 'Шевченка, 77' }
     mobile_number { '+380998494555' }
@@ -36,6 +34,19 @@ FactoryBot.define do
 
     factory :account_with_short_mobile_number do
       mobile_number { '38099' }
+    end
+
+    factory :account_with_role_customer do
+      association :user, factory: :user_customer
+    end
+
+    factory :account_with_role_customer_without_district do
+      district { nil }
+    end
+
+    factory :account_with_role_admin do
+      association :user, factory: :user_admin
+      district { nil }
     end
   end
 end

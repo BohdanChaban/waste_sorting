@@ -1,7 +1,7 @@
 class Account < ApplicationRecord
-  belongs_to :user,  optional: false
-  belongs_to :district, -> { User.customer }, inverse_of: false, optional: false
-  
+  belongs_to :user, optional: false
+  belongs_to :district, optional: true
+
   MAX_NAME_LENGTH = 25
   MAX_SURNAME_LENGTH = 25
   MIN_MOBILE_NUMBER = 10
@@ -16,6 +16,11 @@ class Account < ApplicationRecord
   validates :address, length: { maximum: MAX_ADDRESS_LENGTH }
   validates :mobile_number, length: { minimum: MIN_MOBILE_NUMBER, maximum: MAX_MOBILE_NUMBER }
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
+  validate :expiration_role_can_be_customer
+
+  def expiration_role_can_be_customer
+    errors.add(:expiration_role, 'customer without district') if user.customer? && !district
+  end
 
   def capitalize_options
     self.name = name.capitalize
