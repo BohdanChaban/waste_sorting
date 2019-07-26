@@ -16,9 +16,9 @@ class Account < ApplicationRecord
   validates :address, length: { maximum: MAX_ADDRESS_LENGTH }
   validates :mobile_number, length: { minimum: MIN_MOBILE_NUMBER, maximum: MAX_MOBILE_NUMBER }
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
-  validate :expiration_role_can_be_customer
+  validate :customer_mast_have_district
 
-  def expiration_role_can_be_customer
+  def customer_mast_have_district
     errors.add(:expiration_role, 'customer without district') if user.customer? && !district
   end
 
