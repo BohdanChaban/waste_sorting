@@ -36,5 +36,20 @@ RSpec.describe Account, type: :model do
       account = FactoryBot.build(:account_with_short_mobile_number)
       expect(account).to be_invalid
     end
+
+    it 'is valid with user costomer with district' do
+      account = FactoryBot.create(:account_with_role_customer)
+      expect(account).to be_valid
+    end
+
+    it 'is valid with user costomer without district' do
+      account = FactoryBot.build(:account_with_role_customer_without_district)
+      expect { account.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it 'is valid with user admin with district' do
+      account = FactoryBot.create(:account_with_role_admin)
+      expect(account).to be_valid
+    end
   end
 end

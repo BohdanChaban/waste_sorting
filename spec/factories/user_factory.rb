@@ -17,7 +17,7 @@ FactoryBot.define do
     end
 
     factory :user_admin do
-      email { 'admin@gmail.com' }
+      email { 'admin123@gmail.com' }
       role { 'admin' }
     end
 

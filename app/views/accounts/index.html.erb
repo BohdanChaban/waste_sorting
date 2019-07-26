@@ -9,7 +9,7 @@
       <th>Surname</th>
       <th>Address</th>
       <th>Mobile number</th>
-      <th>City</th>
+      <th>District</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +21,9 @@
         <td><%= account.surname %></td>
         <td><%= account.address %></td>
         <td><%= account.mobile_number %></td>
-        <td><%= account.city.name %></td>
+        <% if current_user.customer? %> 
+          <td><%= account.district.name %></td>
+        <% end %>
         <td><%= link_to 'Show', account %></td>
         <td><%= link_to 'Edit', edit_account_path(account) %></td>
       </tr>
