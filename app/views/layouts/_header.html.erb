@@ -4,6 +4,7 @@
       <%= link_to 'News', root_path, class: 'btn btn-warning' %>
       <%= link_to 'About Us', abouts_path, class: 'btn btn-warning' %>
       <%= link_to 'Contacts', contacts_path, class: 'btn btn-warning' %>
+      <%= link_to 'My Account', accounts_path(:id), class: 'btn btn-warning' %>
       <% if user_signed_in? %>
         <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-warning right' %>
         <%= link_to 'Account', '', class: 'btn btn-warning right' %>

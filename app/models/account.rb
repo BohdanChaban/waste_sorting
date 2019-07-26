@@ -15,13 +15,7 @@ class Account < ApplicationRecord
   validates :address, length: { maximum: MAX_ADDRESS_LENGTH }
   validates :mobile_number, length: { minimum: MIN_MOBILE_NUMBER, maximum: MAX_MOBILE_NUMBER }
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
-  validate :user_cannot_create_more_than_one_account, on: :create
-
-  def user_cannot_create_more_than_one_account
-    Account.all.each do |account|
-      errors.add(:account, "can't be more than one account") if account.user_id == user.id
-    end
-  end
+  validates_uniqueness_of :user_id
 
   def capitalize_options
     self.name = name.capitalize
