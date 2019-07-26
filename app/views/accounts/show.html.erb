@@ -2,23 +2,23 @@
 
 <p>
   <strong>Name:</strong>
-  <%= account.name %>
+  <%= @account.name %>
 </p>
 
 <p>
   <strong>Surname:</strong>
-  <%= account.surname %>
+  <%= @account.surname %>
 </p>
 
 <p>
   <strong>Address:</strong>
-  <%= account.address %>
+  <%= @account.address %>
 </p>
 
 <p>
   <strong>Mobile number:</strong>
-  <%= account.mobile_number %>
+  <%= @account.mobile_number %>
 </p>
 
-<%= link_to 'Edit', edit_account_path(account) %> |
+<%= link_to 'Edit', edit_account_path(current_user.account) %> |
 <%= link_to 'Back', accounts_path %>

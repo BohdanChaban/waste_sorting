@@ -15,7 +15,7 @@ class Account < ApplicationRecord
   validates :address, length: { maximum: MAX_ADDRESS_LENGTH }
   validates :mobile_number, length: { minimum: MIN_MOBILE_NUMBER, maximum: MAX_MOBILE_NUMBER }
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
-  validates_uniqueness_of :user_id
+  validates_uniqueness_of :user_id, on: :create
 
   def capitalize_options
     self.name = name.capitalize

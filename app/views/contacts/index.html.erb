@@ -1,32 +1,30 @@
 <p id="notice"><%= notice %></p>
-
 <h1>Contacts</h1>
 <% if @contacts.blank? %>
-<div><p>Information would be added later</p></div>
-<% end %>
-  <tbody>
-    <% @contacts.each do |contact| %>
+  <div><p>Information would be added later</p></div>
+<% else %>
+  <% @contacts.each do |contact| %>
     <table>
-        <tr><div class = "table_name"><b><%= contact.name %></b></div>
-       </tr>
-
-      <%=show_non_blank_field "Address", contact.address %>
-       
+      <tbody>
+        <tr>
+          <div class = "table_name"><b><%= contact.name %></b></div>
+        </tr>
+        <%=show_non_blank_field "Address", contact.address %>
         <%= show_non_blank_field "Email", contact.email %>
-
         <%= show_non_blank_field "Mobile number", contact.mobile_number %>
-        
         <%= show_non_blank_field "Facebook", contact.facebook %>
-       
         <%= show_non_blank_field "Instagram", contact.instagram %>
-         
         <%= show_non_blank_field "Other info", contact.other_info %>
-      
-        <tr><td><%= link_to 'Edit', edit_contact_path(contact) %>
-            <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td></tr>
+        <tr>
+          <td>
+            <%= link_to 'Edit', edit_contact_path(contact) %>
+            <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      </tbody>
     </table>
-    <% end %>
-  </tbody>
-<% if current_user && current_user.admin?%> 
-<%= link_to 'New Contact', new_contact_path %>
+  <% end %>
+<% end %>
+<% if current_user && current_user.admin?%>
+  <%= link_to 'New Contact', new_contact_path %>
 <% end %>
