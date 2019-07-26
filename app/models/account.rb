@@ -16,10 +16,10 @@ class Account < ApplicationRecord
   validates :address, length: { maximum: MAX_ADDRESS_LENGTH }
   validates :mobile_number, length: { minimum: MIN_MOBILE_NUMBER, maximum: MAX_MOBILE_NUMBER }
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
-  validate :customer_mast_have_district
+  validate :customer_must_have_district
 
-  def customer_mast_have_district
-    errors.add(:expiration_role, 'customer without district') if user.customer? && !district
+  def customer_must_have_district
+    errors.add(:district, 'customer without district') if user.customer? && !district
   end
 
   def capitalize_options

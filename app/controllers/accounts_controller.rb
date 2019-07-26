@@ -9,12 +9,10 @@ class AccountsController < ApplicationController
 
   def new
     @account = Account.new
-    @cities = City.all
     @districts = District.all
   end
 
   def edit
-    @cities = City.all
     @districts = District.all
   end
 

@@ -9,7 +9,7 @@ class TimeslotService
     elsif @user&.manager?
       @user.timeslots
     elsif @user&.customer?
-      Timeslot.select { |t| t.district.city == @user.account.city }
+      Timeslot.select { |t| t.district == @user.account.district }
     end
   end
 end
