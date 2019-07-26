@@ -8,6 +8,7 @@ class AccountsController < ApplicationController
   def show; end
 
   def new
+    redirect_to account_path(current_user.account) unless current_user.account.nil?
     @account = Account.new
     @cities = City.all
   end
@@ -20,7 +21,7 @@ class AccountsController < ApplicationController
     new_account
     respond_to do |format|
       if @account.save
-        format.html { redirect_to root_path, notice: 'Account was successfully created.' }
+        format.html { redirect_to current_account_path, notice: 'Account was successfully created.' }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -54,5 +55,9 @@ class AccountsController < ApplicationController
   def new_account
     @account = Account.new(account_params)
     @account.user = current_user
+  end
+
+  def current_account_path
+    account_path(current_user.account)
   end
 end

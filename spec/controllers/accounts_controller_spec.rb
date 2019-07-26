@@ -22,10 +22,17 @@ RSpec.describe AccountsController, type: :controller do
   let(:user) { account.user }
 
   describe 'GET #index' do
-    it 'returns a success response' do
+    it 'returns a success response for admin' do
+      user.role = 'admin'
       login_with user
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
+    end
+
+    it 'returns a not_success response for other users' do
+      login_with user
+      get :index, params: {}, session: valid_session
+      expect(response).not_to be_successful
     end
   end
 
@@ -37,11 +44,23 @@ RSpec.describe AccountsController, type: :controller do
     end
   end
 
-  describe 'GET #new' do
-    it 'returns a success response' do
-      login_with user
-      get :new, params: {}, session: valid_session
-      expect(response).to be_successful
+  describe 'GET #new', tdd: true do
+    context 'new account' do
+      let(:user_customer) { FactoryBot.create(:user_customer) }
+      let(:account) { nil }
+
+      it 'when account not exist' do
+        login_with user_customer
+        get :new, params: {}, session: valid_session
+        expect(response).to be_successful
+      end
+    end
+    context 'redirect to show page' do
+      it 'when accounts already exist' do
+        login_with user
+        get :new, params: {}, session: valid_session
+        expect(response).to redirect_to(account_path(user.account))
+      end
     end
   end
 
@@ -53,9 +72,11 @@ RSpec.describe AccountsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
-    context 'with valid params' do
-      it 'creates a new Account' do
+  describe 'POST #create', tdd1: true do
+    xcontext 'create account with valid params' do
+      # let(:user_customer) { FactoryBot.create(:user_customer) }
+      # let(:account) { nil }
+      it 'when account not exist' do
         login_with user
         expect do
           post :create, params: { account: valid_account }, session: valid_session
