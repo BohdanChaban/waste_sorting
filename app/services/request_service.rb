@@ -7,7 +7,8 @@ class RequestService
     if @user&.admin?
       Request.all
     elsif @user&.manager?
-      @user.requests
+      request = @user.timeslots.map { |t| t.requests.map { |r| r } }
+      request.flatten
     elsif @user&.customer?
       @user.requests
     end
