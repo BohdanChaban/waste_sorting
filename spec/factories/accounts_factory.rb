@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :account do
     association :user, factory: :user
-    association :city, factory: :city_with_valid_name
+
+    association :district, factory: :district_valid_name
 
     name { 'Name' }
     surname { 'Surname' }
@@ -33,6 +34,19 @@ FactoryBot.define do
 
     factory :account_with_short_mobile_number do
       mobile_number { '38099' }
+    end
+
+    factory :account_with_role_customer do
+      association :user, factory: :user_customer
+    end
+
+    factory :account_with_role_customer_without_district do
+      district { nil }
+    end
+
+    factory :account_with_role_admin do
+      association :user, factory: :user_admin
+      district { nil }
     end
   end
 end

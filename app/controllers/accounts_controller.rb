@@ -10,11 +10,11 @@ class AccountsController < ApplicationController
   def new
     redirect_to account_path(current_user.account) unless current_user.account.nil?
     @account = Account.new
-    @cities = City.all
+    @districts = District.all
   end
 
   def edit
-    @cities = City.all
+    @districts = District.all
   end
 
   def create
@@ -49,7 +49,7 @@ class AccountsController < ApplicationController
   end
 
   def account_params
-    params.require(:account).permit(:name, :surname, :address, :mobile_number, :city_id)
+    params.require(:account).permit(:name, :surname, :address, :mobile_number, :district_id)
   end
 
   def new_account

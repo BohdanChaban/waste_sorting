@@ -31,17 +31,17 @@
     <%= form.text_field :mobile_number %>
   </div>
   
-  <div class="field">
-    <%= form.label :city_id, "City" %>
-    <% if @cities %>  
-      <%= form.select(:city_id) do %>
-        <% @cities.each do |c| -%>
-          <%= content_tag(:option, c.name, value: c.id) %>
+  <% if current_user.customer? && @districts %> 
+    <div class="field">
+      <%= form.label :district_id, "District" %> 
+        <%= form.select(:district_id) do %>
+          <% @districts.each do |d| -%>
+            <%= content_tag(:option, "#{d.name}, #{d.city.name}", value: d.id) %>
+          <% end %>
         <% end %>
-      <% end %>
-    <% end %>
-  </div>
-
+    </div>
+  <% end %>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
