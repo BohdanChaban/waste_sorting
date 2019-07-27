@@ -20,5 +20,7 @@
   <%= @account.mobile_number %>
 </p>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
+<button type="button" class="btn btn-dark">
+	<%= link_to 'Edit', edit_account_path(@account) %>
+</button>
 <%= link_to 'Back', accounts_path %>

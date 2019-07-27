@@ -11,37 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
-
-  <div class="field">
+ 
+  <div class="form-group">
     <%= form.label :surname %>
-    <%= form.text_field :surname %>
+    <%= form.text_field :surname, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :address %>
-    <%= form.text_field :address, placeholder: "Шевченка, 77"%>
+    <%= form.text_field :address, class: "form-control", placeholder: "Шевченка, 77" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :mobile_number %>
-    <%= form.text_field :mobile_number %>
+    <%= form.text_field :mobile_number, class: "form-control" %>
   </div>
   
   <% if current_user.customer? && @districts %> 
-    <div class="field">
+    <div class="form-group">
       <%= form.label :district_id, "District" %> 
-        <%= form.select(:district_id) do %>
-          <% @districts.each do |d| -%>
-            <%= content_tag(:option, "#{d.name}, #{d.city.name}", value: d.id) %>
-          <% end %>
+      <%= form.select :district_id, {}, {}, {class: "form form-group form-control"} do %>
+        <% @districts.each do |d| -%>
+          <%= content_tag(:option, "#{d.name}, #{d.city.name}", value: d.id) %>
         <% end %>
+      <% end %>
     </div>
   <% end %>
-  
+
   <div class="actions">
     <%= form.submit %>
   </div>
