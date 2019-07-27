@@ -2,13 +2,25 @@ require 'rails_helper'
 
 RSpec.describe InquiriesController, type: :controller do
   let(:inquiry_valid_status) do
-    { status: 'initiated' }
+    { status: 'initiated', timeslot_id: timeslot.id}
   end
 
   let(:inquiry_invalid_status) do
     { status: ' ' }
   end
 
+  let(:inquiry_valid_status_update) do
+    { status: 'initiated', }
+  end
+
+  let(:timeslot_valid_time) do
+    { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00'), district_id: district.id }
+  end
+
+  let(:district_valid_name) do
+    { name: 'Львівський'}
+  end
+  let(:district) { FactoryBot.create(:district_valid_name) }
   let(:timeslot) { FactoryBot.create(:timeslot_valid_time) }
   let(:user_customer) { FactoryBot.create(:user_customer) }
   let(:user_manager) { FactoryBot.create(:user_manager) }
@@ -167,7 +179,6 @@ RSpec.describe InquiriesController, type: :controller do
 
     context 'sign_in with user_customer role' do
       context 'with valid params' do
-        let!(:inquiry) { FactoryBot.create(:inquiry_valid_status) }
         it 'creates a new Inquiry' do
           login_with user_customer
           expect do
@@ -197,14 +208,14 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with valid params' do
         it 'updates the requested inquiry' do
           login_with user_admin
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
           inquiry.reload
-          expect(inquiry.status).to eql(inquiry_valid_status[:status])
+          expect(inquiry.status).to eql(inquiry_valid_status_update[:status])
         end
 
         it 'redirects to the inquiry' do
           login_with user_admin
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
           expect(response).to redirect_to(inquiry)
         end
       end
@@ -222,14 +233,14 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with valid params' do
         it 'updates the requested inquiry' do
           login_with user_manager
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
           inquiry.reload
-          expect(inquiry.status).to eql(inquiry_valid_status[:status])
+          expect(inquiry.status).to eql(inquiry_valid_status_update[:status])
         end
 
         it 'redirects to the inquiry' do
           login_with user_manager
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
           expect(response).to redirect_to(inquiry)
         end
       end
@@ -247,14 +258,14 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with valid params' do
         it 'updates the requested inquiry' do
           login_with user_customer
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
           inquiry.reload
-          expect(inquiry.status).to eql(inquiry_valid_status[:status])
+          expect(inquiry.status).to eql(inquiry_valid_status_update[:status])
         end
 
         it 'redirects to the inquiry' do
           login_with user_customer
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
           expect(response).to redirect_to(root_path)
         end
       end
