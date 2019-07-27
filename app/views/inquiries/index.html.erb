@@ -15,13 +15,16 @@
       <tr>
         <td><%= inquiry.status %></td>
         <td><%= link_to 'Show', inquiry %></td>
+          <% unless current_user&.customer?  %>
         <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
         <td><%= link_to 'Destroy', inquiry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Inquiry', new_inquiry_path %>
+  <% unless current_user&.admin? || current_user&.manager?  %>
+    <%= link_to 'New Inquiry', new_inquiry_path %>
+  <% end %>
