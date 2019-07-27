@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe InquiriesController, type: :controller do
   let(:inquiry_valid_status) do
-    { status: 'initiated', timeslot_id: timeslot.id}
+    { status: 'initiated', timeslot_id: timeslot.id }
   end
 
   let(:inquiry_invalid_status) do
@@ -10,7 +10,7 @@ RSpec.describe InquiriesController, type: :controller do
   end
 
   let(:inquiry_valid_status_update) do
-    { status: 'initiated', }
+    { status: 'initiated' }
   end
 
   let(:timeslot_valid_time) do
@@ -18,7 +18,7 @@ RSpec.describe InquiriesController, type: :controller do
   end
 
   let(:district_valid_name) do
-    { name: 'Львівський'}
+    { name: 'Львівський' }
   end
   let(:district) { FactoryBot.create(:district_valid_name) }
   let(:timeslot) { FactoryBot.create(:timeslot_valid_time) }
