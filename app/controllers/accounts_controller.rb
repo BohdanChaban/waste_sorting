@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
   def show; end
 
   def new
-    redirect_to account_path(current_user.account) unless current_user.account.nil?
+    redirect_to account_path(current_user.account) if current_user.account
     @account = Account.new
     @districts = District.all
   end
