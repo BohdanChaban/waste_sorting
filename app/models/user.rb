@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_one :account
   has_many :timeslots
+  has_many :inquiries
 
   EMAIL_LENGTH = (6..50).freeze
   ROLES = %w[customer manager admin].freeze

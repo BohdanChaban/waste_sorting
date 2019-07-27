@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :inquiries
   resources :timeslots
   resources :contacts, except: :show
   resources :abouts, only: %i[index edit update]
