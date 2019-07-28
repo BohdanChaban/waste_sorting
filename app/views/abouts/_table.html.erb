@@ -1,8 +1,8 @@
 <table>
   <tbody>
     <td><%= @about.content %></td>
-      <%if current_user && current_user.admin? %> 
-        <td><%= link_to 'Edit', edit_about_path(@about) %></td>
-      <% end %>
+    <%if current_user && current_user.admin? %> 
+      <td><%= link_to 'Edit', edit_about_path(@about) %></td>
+    <% end %>
   </tbody>
 </table>
