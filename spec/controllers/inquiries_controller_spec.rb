@@ -6,15 +6,23 @@ RSpec.describe InquiriesController, type: :controller do
   end
 
   let(:inquiry_invalid_status) do
-    { status: ' ' }
+    { status: ' ', timeslot_id: timeslot.id }
   end
 
   let(:inquiry_valid_status_update) do
     { status: 'initiated' }
   end
 
+  let(:inquiry_invalid_status_update) do
+    { status: ' ' }
+  end
+
   let(:timeslot_valid_time) do
-    { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+09:00'), district_id: district.id }
+    { start_time: Time.new(2019, 0o2, 24, 12, 0, 0, '+03:00'), district_id: district.id }
+  end
+
+  let(:timeslot_invalid_time) do
+    { start_time: ' ', district_id: district.id }
   end
 
   let(:district_valid_name) do
@@ -191,6 +199,15 @@ RSpec.describe InquiriesController, type: :controller do
           post :create, params: { inquiry: inquiry_valid_status }, session: valid_session
           expect(response).to redirect_to(Inquiry.last)
         end
+
+        it 'redirects to the not created inquiry' do
+          login_with user_customer
+          post :create, params: { inquiry: inquiry_valid_status }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status }, session: valid_session
+          expect(response).to redirect_to(root_path)
+        end
       end
 
       context 'with invalid params' do
@@ -223,7 +240,7 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_admin
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status_update }, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -248,7 +265,7 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_manager
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status_update }, session: valid_session
           expect(response).to be_successful
         end
       end
@@ -273,7 +290,7 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_customer
-          put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status }, session: valid_session
+          put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status_update }, session: valid_session
           expect(response).not_to be_successful
         end
       end

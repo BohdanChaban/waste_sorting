@@ -8,5 +8,8 @@ FactoryBot.define do
     factory :inquiry_invalid_status do
       status { 'new' }
     end
+    factory :inquiry_valid_status_update do
+      status { 'cancelled' }
+    end
   end
 end

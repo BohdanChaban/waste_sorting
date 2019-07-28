@@ -3,6 +3,7 @@ class InquiriesController < ApplicationController
   before_action :check_full_access, only: %i[update edit destroy]
   before_action :set_inquiry, only: %i[show edit update destroy]
 
+  MAX_COUNT_INQUIRY = 3
   def index
     @inquiries = InquiryService.new(current_user).call
   end
@@ -17,14 +18,10 @@ class InquiriesController < ApplicationController
 
   def create
     new_inquiry
-    respond_to do |format|
-      if @inquiry.save
-        format.html { redirect_to @inquiry, notice: 'Inquiry was successfully created.' }
-        format.json { render :show, status: :created, location: @inquiry }
-      else
-        format.html { render :new }
-        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
-      end
+    if @inquiry.timeslot.inquiries.count < MAX_COUNT_INQUIRY
+      check_respond_create
+    else
+      redirect_to root_path, notice: 'For this timeslot, all inquiries are busy'
     end
   end
 
@@ -62,5 +59,17 @@ class InquiriesController < ApplicationController
   def new_inquiry
     @inquiry = Inquiry.new(inquiry_params)
     @inquiry.user = current_user
+  end
+
+  def check_respond_create
+    respond_to do |format|
+      if @inquiry.save
+        format.html { redirect_to @inquiry, notice: 'Inquiry was successfully created.' }
+        format.json { render :show, status: :created, location: @inquiry }
+      else
+        format.html { render :new }
+        format.json { render json: @inquiry.errors, status: :unprocessable_entity }
+      end
+    end
   end
 end
