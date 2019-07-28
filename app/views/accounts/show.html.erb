@@ -1,26 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @account.name %>
-</p>
+<div class="card bg-light mb-3" style="max-width: 18rem;">
+  <div class="card-header">My Account</div>
+    <div class="card-body">
+      <h5 class="card-title"><%= "#{@account.name} #{@account.surname}" %></h5>
+    <p class="card-text">
+        <strong>Address:</strong>
+        <%= @account.address %>
+      </p>
+    <p class="card-text">
+        <strong>Mobile number:</strong>
+        <%= @account.mobile_number %>
+    </p>
+    </div>
+</div>
+<%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_account_path(@account) %>
 
-<p>
-  <strong>Surname:</strong>
-  <%= @account.surname %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @account.address %>
-</p>
-
-<p>
-  <strong>Mobile number:</strong>
-  <%= @account.mobile_number %>
-</p>
-
-<button type="button" class="btn btn-dark">
-	<%= link_to 'Edit', edit_account_path(@account) %>
-</button>
-<%= link_to 'Back', accounts_path %>
+<%= link_to '<button type="button" class="btn btn-light">Back</button>'.html_safe, accounts_path %>

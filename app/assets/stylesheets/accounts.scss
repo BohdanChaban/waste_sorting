@@ -5,3 +5,9 @@
 	color:yellow;
 	background-color:black;
 }
+.father {
+	width: 20%;
+}
+.father .form-group:nth-child(5){
+	width:100%;
+}
