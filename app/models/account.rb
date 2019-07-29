@@ -17,6 +17,7 @@ class Account < ApplicationRecord
   validates :mobile_number, length: { minimum: MIN_MOBILE_NUMBER, maximum: MAX_MOBILE_NUMBER }
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
   validate :customer_must_have_district
+  validates_uniqueness_of :user_id, on: :create
 
   scope :user_role, ->(role) { joins(:user).where(users: { role: role }) }
   def customer_must_have_district

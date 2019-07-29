@@ -1,38 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Accounts</h1>
+
 <% if @accounts %>
-  <table>
-    <thead>
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Address</th>
-        <th>Mobile number</th>
-        <th>District</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Address</th>
+        <th scope="col">Mobile number</th>
         <th colspan="3"></th>
       </tr>
     </thead>
 
-    <tbody>    
+    <tbody>
       <% @accounts.each do |account| %>
         <tr>
           <td><%= account.name %></td>
           <td><%= account.surname %></td>
           <td><%= account.address %></td>
           <td><%= account.mobile_number %></td>
-          <% if current_user.customer? %> 
-            <td><%= account.district.name %></td>
-          <% end %>
-          <td><%= link_to 'Show', account %></td>
-          <td><%= link_to 'Edit', edit_account_path(account) %></td>
+          <td><%= link_to '<button type="button" class="btn btn-light">Show</button>'.html_safe, account %></td>
+          <td><%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_account_path(account) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
- <% else %>
+<% else %>
    <div>There are no accounts</div>
- <% end %>
-<br>
+<% end %>
+<%= link_to '<button type="button" class="btn btn-success">New Account</button>'.html_safe, new_account_path %>
 
-<%= link_to 'New Account', new_account_path %>

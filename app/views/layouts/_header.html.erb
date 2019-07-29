@@ -6,7 +6,7 @@
       <%= link_to 'Contacts', contacts_path, class: 'btn btn-warning' %>
       <% if user_signed_in? %>
         <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-warning right' %>
-        <%= link_to 'Account', '', class: 'btn btn-warning right' %>
+        <%= link_to 'Account', current_user.account ? account_path(current_user.account) : new_account_path, class: 'btn btn-warning right' %>
       <% else %>
         <%= link_to 'Log In', new_user_session_path, class: 'btn btn-warning right' %>
       <% end %>

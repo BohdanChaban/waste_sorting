@@ -2,20 +2,11 @@
 
 <h1>Abouts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <td><%= @about.content %></td>
-      <%if current_user && current_user.admin? %> 
-        <td><%= link_to 'Edit', edit_about_path(@about) %></td>
-      <% end %>
-  </tbody>
-</table>
+<% if @about.blank? %>
+  <div><p>Information would be added later</p></div>
+<% else %>
+  <%= render 'table', about: @about %>
+<% end %>
 
-<br>
+
 
