@@ -9,7 +9,7 @@ class TimeslotService
     elsif @user&.manager?
       @user.timeslots
     elsif @user&.customer?
-      Timeslot.select { |t| t.district == @user.account.district }
+      Timeslot.select{ |m| !m.max_count_inquiry? }.select { |t| t.district == @user.account.district  }
     end
   end
 end
