@@ -33,13 +33,13 @@
       <div class="center">
         <% if user_signed_in? %>
           <% if current_user.manager? %>
-            <%= link_to 'Customers', '', class: 'btn btn-warning' %>
+            <%= link_to 'Customers', accounts_path(:param => 'customer'), class: 'btn btn-warning' %>
             <%= link_to 'Timeslots', timeslots_path, class: 'btn btn-warning' %>
             <%= link_to 'Request', '', class: 'btn btn-warning' %>
             <%= link_to 'Cities', cities_path, class: 'btn btn-warning' %>
           <% elsif current_user.admin? %>
-            <%= link_to 'Managers', '', class: 'btn btn-warning' %>
-            <%= link_to 'Customers', '', class: 'btn btn-warning' %>
+            <%= link_to 'Managers', accounts_path(:param => 'manager'), class: 'btn btn-warning' %>
+            <%= link_to 'Customers', accounts_path(:param => 'customer'), class: 'btn btn-warning' %>
             <%= link_to 'Timeslots', timeslots_path, class: 'btn btn-warning' %>
             <%= link_to 'Cities', cities_path, class: 'btn btn-warning' %>
           <% end %>
