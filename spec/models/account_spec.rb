@@ -37,12 +37,12 @@ RSpec.describe Account, type: :model do
       expect(account).to be_invalid
     end
 
-    it 'is valid with user costomer with district' do
+    it 'is valid with user customer with district' do
       account = FactoryBot.create(:account_with_role_customer)
       expect(account).to be_valid
     end
 
-    it 'is valid with user costomer without district' do
+    it 'is valid with user customer without district' do
       account = FactoryBot.build(:account_with_role_customer_without_district)
       expect { account.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
@@ -50,6 +50,11 @@ RSpec.describe Account, type: :model do
     it 'is valid with user admin with district' do
       account = FactoryBot.create(:account_with_role_admin)
       expect(account).to be_valid
+    end
+    
+    it 'is not valid to user more than one account creation' do
+      FactoryBot.create(:account_with_role_customer)
+      expect { FactoryBot.create(:account_with_role_customer) }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
 end

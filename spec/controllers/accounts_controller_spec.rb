@@ -109,10 +109,6 @@ RSpec.describe AccountsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
       it 'updates the requested account' do
         login_with user
         put :update, params: { id: account.to_param, account: valid_account }, session: valid_session
