@@ -18,6 +18,7 @@ class Account < ApplicationRecord
   validates :mobile_number, format: { with: /\d[0-9]\)*\z/ }
   validate :customer_must_have_district
 
+  scope :user_role, ->(role) { joins(:user).where(users: { role: role }) }
   def customer_must_have_district
     errors.add(:district, 'customer without district') if user.customer? && !district
   end
