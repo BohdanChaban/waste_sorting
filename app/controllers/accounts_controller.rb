@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_action :check_admin_access, only: %i[index]
 
   def index
-    @accounts = Account.all
+    @accounts = Account.user_role(params[:role]) if params[:role]
   end
 
   def show; end

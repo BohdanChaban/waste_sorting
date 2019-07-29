@@ -19,6 +19,7 @@ class Account < ApplicationRecord
   validate :customer_must_have_district
   validates_uniqueness_of :user_id, on: :create
 
+  scope :user_role, ->(role) { joins(:user).where(users: { role: role }) }
   def customer_must_have_district
     errors.add(:district, 'customer without district') if user.customer? && !district
   end
