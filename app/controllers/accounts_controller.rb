@@ -2,12 +2,8 @@ class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update]
 
   def index
-    if params[:param] == "customer"
-      @accounts = Account.where(role: 'customer')
-    elsif params[:param] == "manager"
-      @accounts = Account.where(role: 'manager')
-    end  
-  end 
+    @accounts = Account.where(user_id: User.where(role: params[:param]).ids)
+  end
 
   def show; end
 
