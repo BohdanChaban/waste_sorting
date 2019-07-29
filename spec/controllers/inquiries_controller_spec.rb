@@ -61,7 +61,7 @@ RSpec.describe InquiriesController, type: :controller do
       it 'returns a success response' do
         login_with user_customer
         get :index, params: {}, session: valid_session
-        expect(response).not_to be_successful
+        expect(response).to be_successful
       end
     end
   end
@@ -90,30 +90,6 @@ RSpec.describe InquiriesController, type: :controller do
     end
   end
 
-  describe 'GET #new' do
-    context 'sign_in with user_admin role' do
-      it 'returns a success response' do
-        login_with user_admin
-        get :new, params: { timeslot_id: timeslot.id }, session: valid_session
-        expect(response).not_to be_successful
-      end
-    end
-    context 'sign_in with user_manager role' do
-      it 'returns a success response' do
-        login_with user_manager
-        get :new, params: { timeslot_id: timeslot.id }, session: valid_session
-        expect(response).not_to be_successful
-      end
-    end
-    context 'sign_in with user_customer role' do
-      it 'returns a success response' do
-        login_with user_customer
-        get :new, params: { timeslot_id: timeslot.id }, session: valid_session
-        expect(response).not_to be_successful
-      end
-    end
-  end
-
   describe 'GET #edit' do
     context 'sign_in with user_admin role' do
       it 'returns a success response' do
@@ -138,19 +114,19 @@ RSpec.describe InquiriesController, type: :controller do
     end
   end
 
-  describe 'create' do
+  describe 'POST #create' do
     context 'sign_in with user_admin role' do
       context 'with valid params' do
         it 'creates a new Inquiry' do
           login_with user_admin
           expect do
-            get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+            post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           end.to change(Inquiry, :count).by(0)
         end
 
         it 'redirects to the created inquiry' do
           login_with user_admin
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).to redirect_to(root_path)
         end
       end
@@ -158,7 +134,7 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_admin
-          get :new, params: { inquiry: inquiry_invalid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_invalid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).not_to be_successful
         end
       end
@@ -169,13 +145,13 @@ RSpec.describe InquiriesController, type: :controller do
         it 'creates a new Inquiry' do
           login_with user_manager
           expect do
-            get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+            post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           end.to change(Inquiry, :count).by(0)
         end
 
         it 'redirects to the created inquiry' do
           login_with user_manager
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).to redirect_to(root_path)
         end
       end
@@ -183,7 +159,7 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_manager
-          get :new, params: { inquiry: inquiry_invalid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_invalid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).not_to be_successful
         end
       end
@@ -194,21 +170,21 @@ RSpec.describe InquiriesController, type: :controller do
         it 'creates a new Inquiry' do
           login_with user_customer
           expect do
-            get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+            post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           end.to change(Inquiry, :count).by(1)
         end
 
         it 'redirects to the created inquiry' do
           login_with user_customer
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).to redirect_to(Inquiry.last)
         end
         it 'redirects to the not created inquiry' do
           login_with user_customer
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
-          get :new, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_valid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).to redirect_to(timeslots_path)
         end
       end
@@ -216,7 +192,7 @@ RSpec.describe InquiriesController, type: :controller do
       context 'with invalid params' do
         it "returns a success response (i.e. to display the 'new' template)" do
           login_with user_customer
-          get :new, params: { inquiry: inquiry_invalid_status, timeslot_id: timeslot.id }, session: valid_session
+          post :create, params: { inquiry: inquiry_invalid_status, timeslot_id: timeslot.id }, session: valid_session
           expect(response).not_to be_successful
         end
       end

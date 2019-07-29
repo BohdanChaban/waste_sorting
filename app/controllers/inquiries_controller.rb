@@ -1,6 +1,6 @@
 class InquiriesController < ApplicationController
   before_action :check_customer_access, only: %i[new create]
-  before_action :check_full_access, only: %i[index update edit destroy]
+  before_action :check_full_access, only: %i[update edit destroy]
   before_action :set_inquiry, only: %i[show edit update destroy]
 
   def index
@@ -9,7 +9,11 @@ class InquiriesController < ApplicationController
 
   def show; end
 
-  def new
+  def new; end
+
+  def edit; end
+
+  def create
     new_inquiry
     respond_to do |format|
       if @inquiry.save
@@ -21,8 +25,6 @@ class InquiriesController < ApplicationController
       end
     end
   end
-
-  def edit; end
 
   def update
     @inquiry.user = current_user
