@@ -9,7 +9,7 @@
         <tr>
           <div class = "table_name"><b><%= contact.name %></b></div>
         </tr>
-        <%=show_non_blank_field "Address", contact.address %>
+        <%= show_non_blank_field "Address", contact.address %>
         <%= show_non_blank_field "Email", contact.email %>
         <%= show_non_blank_field "Mobile number", contact.mobile_number %>
         <%= show_non_blank_field "Facebook", contact.facebook %>

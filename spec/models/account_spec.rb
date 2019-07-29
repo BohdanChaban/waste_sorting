@@ -51,7 +51,7 @@ RSpec.describe Account, type: :model do
       account = FactoryBot.create(:account_with_role_admin)
       expect(account).to be_valid
     end
-    
+
     it 'is not valid to user more than one account creation' do
       FactoryBot.create(:account_with_role_customer)
       expect { FactoryBot.create(:account_with_role_customer) }.to raise_error(ActiveRecord::RecordInvalid)

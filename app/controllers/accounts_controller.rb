@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update]
   before_action :check_admin_access, only: %i[index]
+
   def index
     @accounts = Account.all
   end
@@ -8,7 +9,7 @@ class AccountsController < ApplicationController
   def show; end
 
   def new
-    redirect_to account_path(current_user.account) if current_user.account
+    redirect_to current_account_path if current_user.account
     @account = Account.new
     @districts = District.all
   end
