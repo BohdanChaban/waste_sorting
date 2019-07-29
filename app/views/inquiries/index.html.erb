@@ -25,6 +25,3 @@
 </table>
 
 <br>
-  <% unless current_user&.admin? || current_user&.manager?  %>
-    <%= link_to 'New Inquiry', new_inquiry_path %>
-  <% end %>

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :inquiries
-  resources :timeslots
+  resources :timeslots do
+    resources :inquiries, only: %i[new]
+  end
+  resources :inquiries, except: %i[new]
   resources :contacts, except: :show
   resources :abouts, only: %i[index edit update]
   resources :accounts, except: :destroy

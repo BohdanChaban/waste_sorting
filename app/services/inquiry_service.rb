@@ -10,7 +10,7 @@ class InquiryService
       inquiry = @user.timeslots.map { |t| t.inquiries.map { |i| i } }
       inquiry.flatten
     elsif @user&.customer?
-      @user.inquiries
+      @user.timeslots.inquiries
     end
   end
 end
