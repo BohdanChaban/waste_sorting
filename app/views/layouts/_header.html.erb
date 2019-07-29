@@ -31,18 +31,13 @@
   <div class="nav-links">
     <div class="container">
       <div class="center">
-        <% if user_signed_in? %>
-          <% unless current_user.customer? %>
-            <%= link_to 'Customers', accounts_path(:role => 'customer'), class: 'btn btn-warning' %>
-            <%= link_to 'Timeslots', timeslots_path, class: 'btn btn-warning' %>
-            <%= link_to 'Cities', cities_path, class: 'btn btn-warning' %>
-          <% end %> 
-          <% if current_user.manager? %>
-            <%= link_to 'Request', '', class: 'btn btn-warning' %>
-          <% elsif current_user.admin? %>
-            <%= link_to 'Managers', accounts_path(:role => 'manager'), class: 'btn btn-warning' %>
-          <% end %>
-        <% end %>
+        <% if user_signed_in? && !current_user.customer?%>
+          <%= link_to 'Customers', accounts_path(:role => 'customer'), class: 'btn btn-warning' %>
+          <%= link_to 'Timeslots', timeslots_path, class: 'btn btn-warning' %>
+          <%= link_to 'Cities', cities_path, class: 'btn btn-warning' %>
+          <%= link_to 'Request', '', class: 'btn btn-warning' if current_user.manager? %>
+          <%= link_to 'Managers', accounts_path(:role => 'manager'), class: 'btn btn-warning' if current_user.admin? %>
+        <% end %> 
       </div>
     </div>  
   </div>
