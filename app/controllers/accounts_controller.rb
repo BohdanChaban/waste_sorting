@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[show edit update]
-  before_action :check_admin_access, only: %i[index]
+  before_action :check_full_access, only: %i[index]
 
   def index
     @accounts = Account.user_role(params[:role]) if params[:role]
