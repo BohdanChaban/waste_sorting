@@ -14,3 +14,13 @@ Contact.create(name: 'Head Office Waste Sorting LTD',
                other_info: 'Zip Code: 79000')
 
 About.create(content: 'HELLOYYYYYYYYYYYYYYY')
+
+districs_of_lviv = %w[
+  Шевченківський Личаківський Сихівський Франківський Залізничний Галицький
+]
+
+City.create(name: 'Львів')
+
+districs_of_lviv.each do |name|
+  District.create(name: name, city_id: 1)
+end
