@@ -13,4 +13,14 @@ Contact.create(name: 'Head Office Waste Sorting LTD',
                instagram: 'https://instagram.com/waste_sorting',
                other_info: 'Zip Code: 79000')
 
-About.create(content: 'HELLOYYYYYYYYYYYYYYY')
+About.create(content: 'Waste Sorting a company that makes the world cleaner')
+
+district_names = %w[
+  Шевченківський Личаківський Сихівський Франківський Залізничний Галицький
+]
+
+city = City.create(name: 'Львів')
+
+district_names.each do |name|
+  District.create(name: name, city_id: city.id)
+end
