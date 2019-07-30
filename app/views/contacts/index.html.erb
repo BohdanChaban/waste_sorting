@@ -15,12 +15,14 @@
         <%= show_non_blank_field "Facebook", contact.facebook %>
         <%= show_non_blank_field "Instagram", contact.instagram %>
         <%= show_non_blank_field "Other info", contact.other_info %>
-        <tr>
-          <td>
-            <%= link_to 'Edit', edit_contact_path(contact) %>
-            <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
-        </tr>
+        <% if current_user && current_user.admin?%>
+          <tr>
+            <td>
+              <%= link_to 'Edit', edit_contact_path(contact) %>
+              <%= link_to "Delete", contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   <% end %>
