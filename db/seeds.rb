@@ -24,3 +24,5 @@ city = City.create(name: 'Львів')
 district_names.each do |name|
   District.create(name: name, city_id: city.id)
 end
+
+User.create(email: 'admin@exm.com', password: '123456', password_confirmation: '123456',role: 'admin')
