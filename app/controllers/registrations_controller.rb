@@ -8,6 +8,19 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  # def update
+  #   @user = User.find(params[:id])
+  #   if @user.update_attributes(user_params)
+  #     redirect_to user_url, notice: 'Updated User.'
+  #   else
+  #     render :edit
+  #   end
+  # end
+
   protected
 
   before_action :authorize_user!, only: %i[new create]

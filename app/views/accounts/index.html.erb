@@ -21,6 +21,8 @@
           <td><%= account.surname %></td>
           <td><%= account.address %></td>
           <td><%= account.mobile_number %></td>
+          <td><%= link_to '<button type="button" class="btn btn-light">Show</button>'.html_safe, account %></td>
+          <td><%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_user_registration_path(:user => account.user_id) %></td>
         </tr>
       <% end %>
     </tbody>
