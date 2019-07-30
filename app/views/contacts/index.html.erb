@@ -15,7 +15,7 @@
         <%= show_non_blank_field "Facebook", contact.facebook %>
         <%= show_non_blank_field "Instagram", contact.instagram %>
         <%= show_non_blank_field "Other info", contact.other_info %>
-        <% if current_user && current_user.admin?%>
+        <% if current_user&.admin?%>
           <tr>
             <td>
               <%= link_to 'Edit', edit_contact_path(contact) %>
@@ -27,6 +27,6 @@
     </table>
   <% end %>
 <% end %>
-<% if current_user && current_user.admin?%>
+<% if current_user&.admin?%>
   <%= link_to 'New Contact', new_contact_path %>
 <% end %>
