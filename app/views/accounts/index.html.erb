@@ -30,5 +30,6 @@
 <% else %>
    <div>There are no accounts</div>
 <% end %>
-<%= link_to '<button type="button" class="btn btn-success">New Account</button>'.html_safe, new_account_path %>
-
+<% if params[:role] == "manager" %>
+<%= link_to '<button type="button" class="btn btn-success">New Manager</button>'.html_safe, new_user_registration_path %>
+<% end %>
