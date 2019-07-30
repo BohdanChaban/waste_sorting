@@ -16,7 +16,7 @@
         <td><%= timeslot.start_time %></td>
         <td><%= link_to 'Show', timeslot %></td>
         <% unless current_user&.manager? || current_user&.admin? %>
-        <td><%= link_to 'New Inquiry', timeslot_inquiries_path(timeslot),method: :create  %></td>
+        <td><%= link_to 'New Inquiry', inquiries_path(inquiry: { timeslot_id: timeslot }),method: :create  %></td>
         <% end %>
         <% unless current_user&.customer?  %>
           <td><%= link_to 'Edit', edit_timeslot_path(timeslot)%></td>

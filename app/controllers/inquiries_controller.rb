@@ -58,8 +58,7 @@ class InquiriesController < ApplicationController
   end
 
   def new_inquiry
-    @timeslot = Timeslot.find(params[:timeslot_id])
-    @inquiry = @timeslot.inquiries.build
+    @inquiry = Inquiry.new(inquiry_params)
     @inquiry.user = current_user
   end
 end
