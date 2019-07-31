@@ -1,6 +1,6 @@
 <h1>Editing Account</h1>
 
 <%= render 'form', account: @account %>
-  <%= link_to '<button type="button" class="btn btn-light">Show</button>'.html_safe, @account %>
+  <%= link_to '<button type="button" class="btn btn-warning">Show</button>'.html_safe, @account %>
 
-<%= link_to '<button type="button" class="btn btn-light">Back</button>'.html_safe, account_path(current_user.account) %>
+<%= link_to '<button type="button" class="btn btn-warning">Back</button>'.html_safe, account_path(current_user.account) %>

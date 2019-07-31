@@ -1,25 +1,26 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Cities</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cities.each do |city| %>
+<div class="city-table-size">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= city.name %></td>
-        <td><%= link_to 'Show', city %></td>
+        <th scope="col", class="city-text-size" >Name</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @cities.each do |city| %>
+        <tr>
+          <td class="city-text-size"><%= city.name %></td>
+          <td><%= link_to '<button type="button" class="btn btn-warning">Show</button>'.html_safe, city %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 <% if current_user.admin? %> 
-  <%= link_to 'New City', new_city_path %>
+  <%= link_to '<button type="button" class="btn btn-warning">New City</button>'.html_safe, new_city_path %>
 <% end %>

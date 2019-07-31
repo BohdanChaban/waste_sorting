@@ -18,8 +18,8 @@
           <% if current_user&.admin?%>
             <tr>
               <td>
-                <%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_contact_path(contact) %>
-                <%= link_to '<button type="button" class="btn btn-dark">Delete</button>'.html_safe, contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %>
+                <%= link_to '<button type="button" class="btn btn-warning">Edit</button>'.html_safe, edit_contact_path(contact) %>
+                <%= link_to '<button type="button" class="btn btn-warning">Delete</button>'.html_safe, contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
           <% end %>
@@ -29,5 +29,5 @@
   <% end %>
 <% end %>
 <% if current_user&.admin?%>
-  <%= link_to'<button type="button" class="btn btn-success">New Contact</button>'.html_safe , new_contact_path %>
+  <%= link_to'<button type="button" class="btn btn-warning">New Contact</button>'.html_safe , new_contact_path %>
 <% end %>

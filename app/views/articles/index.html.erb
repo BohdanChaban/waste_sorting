@@ -14,5 +14,5 @@
   <% end %>
 </div>
 <% if current_user&.admin?%>
-  <%= link_to'<button type="button" class="btn btn-success">New Article</button>'.html_safe , new_article_path %>
+  <%= link_to'<button type="button" class="btn btn-warning">New Article</button>'.html_safe , new_article_path %>
 <% end %>
