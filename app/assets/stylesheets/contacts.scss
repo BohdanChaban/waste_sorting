@@ -6,3 +6,12 @@
 .table_name {
 	margin: 0 0 5px 0;
 }
+.parent-index {
+	width: 50%;
+}
+.parent {
+	width: 20%;
+}
+.parent .form-group:nth-child(5){
+	width:100%;
+}
