@@ -15,9 +15,9 @@
       <tr>
         <td><%= inquiry.status %></td>
         <td><%= link_to 'Show', inquiry %></td>
-          <% unless current_user&.customer?  %>
-            <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
-          <% end %>
+        <% unless current_user&.customer?  %>
+          <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
