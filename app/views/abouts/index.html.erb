@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <% if @about.blank? %>
-  <div><p><big>Information would be added later</big></p></div>
+  <div><p>Information would be added later</p></div>
 <% else %>
-  <%= render 'table', about: @about %>
+  <%= render 'about', about: @about %>
 <% end %>
 
 
