@@ -1,8 +1,8 @@
 <table>
   <tbody>
-    <td><%= about.content %></td>
-    <%if current_user && current_user.admin? %> 
-      <td><%= link_to 'Edit', edit_about_path(about) %></td>
-    <% end %>
+    <td><h5><%= about.content %></h5></td>
   </tbody>
 </table>
+<%if current_user && current_user.admin? %> 
+      <td><%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_about_path(about) %></td>
+    <% end %>
