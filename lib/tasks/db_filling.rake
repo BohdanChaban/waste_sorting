@@ -6,16 +6,15 @@ namespace :db_filling do
     user2 = User.create!(email: 'customer@example.com', password: '123456', role: 'customer')
     user3 = User.create!(email: 'manager1@example.com', password: '123456', role: 'manager')
     city = City.create!(name: 'Львів')
-    city2 = City.create!(name: 'Київ')
     district = District.create!(name: 'Львівський', city: city)
     Account.create!(name: 'Pivo1', surname: 'Rak1', address: 'str1',
-                    mobile_number: '1234567890', user: user1, city: city)
+                    mobile_number: '1234567890', user: user1, district_id: district.id)
     Account.create!(name: 'Pivo2', surname: 'Rak2', address: 'str2',
-                    mobile_number: '1234567890', user: user2, city: city)
+                    mobile_number: '1234567890', user: user2, district_id: district.id)
     Account.create!(name: 'Pivo3', surname: 'Rak4', address: 'str3',
-                    mobile_number: '1234567890', user: user3, city: city)
+                    mobile_number: '1234567890', user: user3, district_id: district.id)
     Account.create!(name: 'Pivo4', surname: 'Rak3', address: 'str4',
-                    mobile_number: '1234567890', user: user, city: city2)
+                    mobile_number: '1234567890', user: user, district_id: district.id)
     Timeslot.create!(start_time: Time.now, district_id: district.id, user: user)
     Timeslot.create!(start_time: Time.now + 1, district_id: district.id, user: user)
     Timeslot.create!(start_time: Time.now + 2, district_id: district.id, user: user1)
