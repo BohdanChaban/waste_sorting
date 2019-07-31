@@ -4,5 +4,5 @@
   </tbody>
 </table>
 <% if current_user&.admin?%> 
-      <td><%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_about_path(about) %></td>
+  <td><%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_about_path(about) %></td>
 <% end %>
