@@ -1,34 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <%if @timeslots.any?%>
-<h1>Timeslots</h1>
+  <h1>Timeslots</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Time slot</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @timeslots.each do |timeslot| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= timeslot.start_time %></td>
-        <td><%= link_to 'Show', timeslot %></td>
-        <% if current_user&.customer? %>
-          <td><%= link_to 'New Inquiry', inquiries_path(inquiry: { timeslot_id: timeslot }),method: :create %></td>
-        <% else %>
-          <td><%= link_to 'Edit', edit_timeslot_path(timeslot)%></td>
-          <td><%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' }%></td>
-        <% end %>
+        <th>Time slot</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%else%>
-  <h3>There are currently no free timeslots</h3>
-<%end%>
+    </thead>
+
+    <tbody>
+      <% @timeslots.each do |timeslot| %>
+        <tr>
+          <td><%= timeslot.start_time %></td>
+          <td><%= link_to 'Show', timeslot %></td>
+            <% if current_user&.customer? %>
+              <td><%= link_to 'New Inquiry', inquiries_path(inquiry: { timeslot_id: timeslot }),method: :create %></td>
+            <% else %>
+              <td><%= link_to 'Edit', edit_timeslot_path(timeslot)%></td>
+              <td><%= link_to 'Destroy', timeslot, method: :delete, data: { confirm: 'Are you sure?' }%></td>
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%else%>
+    <h3>There are currently no free timeslots</h3>
+  <%end%>
 
 <br>
 
