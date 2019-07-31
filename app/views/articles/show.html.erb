@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 <div class="article-show-size">
-	<div class="article-item">
-		<table class = "table">
-			<tbody>
-				<%= show_non_blank_field "Title", @article.title %>
-			  <%= show_non_blank_field "Summary", @article.summary %>
-			  <%= show_non_blank_field "Body", @article.body %>
-			</tbody>  
-		</table>
-	</div> 
+  <div class="article-item">
+    <table class = "table">
+      <tbody>
+        <%= show_non_blank_field "Title", @article.title %>
+        <%= show_non_blank_field "Summary", @article.summary %>
+        <%= show_non_blank_field "Body", @article.body %>
+      </tbody>  
+    </table>
+  </div> 
 </div>
 <% if current_user&.admin?%>  
   <%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_article_path(@article) %>
