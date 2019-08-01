@@ -36,7 +36,7 @@
           <%= link_to 'Customers', accounts_path(:role => 'customer'), class: 'btn btn-warning' unless current_user.customer? %>
           <%= link_to 'Timeslots', timeslots_path, class: 'btn btn-warning' %>
           <%= link_to 'Request', inquiries_path, class: 'btn btn-warning' %>
-          <%= link_to 'Cities', cities_path, class: 'btn btn-warning' %>
+          <%= link_to 'Cities', cities_path, class: 'btn btn-warning' unless current_user.admin? %>
         <% end %>
       </div>
     </div>
