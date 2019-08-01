@@ -16,10 +16,10 @@ class InquiriesController < ApplicationController
     new_inquiry
     respond_to do |format|
       if @inquiry.save
-        format.html { redirect_to @inquiry, notice: 'Inquiry was successfully created.' }
+        format.html { redirect_to @inquiry, notice: 'Request was successfully created.' }
         format.json { render :show, status: :created, location: @inquiry }
       else
-        format.html { redirect_to timeslots_url, notice: 'Inquiry was unsuccessfully created.' }
+        format.html { redirect_to timeslots_url, notice: 'Requests was not created.' }
         format.json { render json: @inquiry.errors, status: :unprocessable_entity }
       end
     end
@@ -28,10 +28,10 @@ class InquiriesController < ApplicationController
   def update
     respond_to do |format|
       if @inquiry.update(inquiry_params)
-        format.html { redirect_to inquiries_url, notice: 'Inquiry was successfully updated.' }
+        format.html { redirect_to inquiries_url, notice: 'Request was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
-        format.html { redirect_to inquiries_url, notice: 'Inquiry was unsuccessfully updated.' }
+        format.html { redirect_to inquiries_url, notice: 'Requests was not updated..' }
         format.json { render json: @inquiry.errors, status: :unprocessable_entity }
       end
     end
@@ -40,7 +40,7 @@ class InquiriesController < ApplicationController
   def destroy
     @inquiry.destroy
     respond_to do |format|
-      format.html { redirect_to inquiries_url, notice: 'Inquiry was successfully destroyed.' }
+      format.html { redirect_to inquiries_url, notice: 'Request was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
