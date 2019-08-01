@@ -22,7 +22,7 @@
           <td><%= account.address %></td>
           <td><%= account.mobile_number %></td>
           <% if params[:role] == "manager" && current_user.admin? %>
-            <td><%= link_to '<button type="button" class="btn btn-dark">Edit</button>'.html_safe,edit_user_registration_path(:id => account.user_id) %></td>
+            <td><%= link_to '<button type="button" class="btn btn-warning">Edit</button>'.html_safe,edit_user_registration_path(:id => account.user_id) %></td>
           <% end %>
         </tr>
       <% end %>
