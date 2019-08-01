@@ -1,15 +1,16 @@
 class InquiriesController < ApplicationController
   before_action :check_customer_access, only: %i[new create]
-  before_action :check_full_access, only: %i[update edit destroy]
-  before_action :set_inquiry, only: %i[show edit update destroy]
+  before_action :check_full_access, only: %i[update destroy]
+  before_action :set_inquiry, only: %i[show update destroy]
 
   def index
-    @inquiries = InquiryService.new(current_user).call
+    inquiries = InquiryService.new(current_user).call
+    @initiated = inquiries.select { |i| i.status == 'initiated' }
+    @approved = inquiries.select { |i| i.status == 'approved' }
+    @completed = inquiries.select { |i| i.status == 'completed' }
   end
 
   def show; end
-
-  def edit; end
 
   def create
     new_inquiry
@@ -28,10 +29,10 @@ class InquiriesController < ApplicationController
     @inquiry.user = current_user
     respond_to do |format|
       if @inquiry.update(inquiry_params)
-        format.html { redirect_to timeslots_url, notice: 'Inquiry was successfully updated.' }
+        format.html { redirect_to inquiries_url, notice: 'Inquiry was successfully updated.' }
         format.json { render :show, status: :ok, location: @inquiry }
       else
-        format.html { render :edit }
+        format.html { redirect_to inquiries_url, notice: 'Inquiry was unsuccessfully updated.' }
         format.json { render json: @inquiry.errors, status: :unprocessable_entity }
       end
     end

@@ -90,30 +90,6 @@ RSpec.describe InquiriesController, type: :controller do
     end
   end
 
-  describe 'GET #edit' do
-    context 'sign_in with user_admin role' do
-      it 'returns a success response' do
-        login_with user_admin
-        get :edit, params: { id: inquiry.to_param }, session: valid_session
-        expect(response).to be_successful
-      end
-    end
-    context 'sign_in with user_manager role' do
-      it 'returns a success response' do
-        login_with user_manager
-        get :edit, params: { id: inquiry.to_param }, session: valid_session
-        expect(response).to be_successful
-      end
-    end
-    context 'sign_in with user_customer role' do
-      it 'returns a success response' do
-        login_with user_customer
-        get :edit, params: { id: inquiry.to_param }, session: valid_session
-        expect(response).not_to be_successful
-      end
-    end
-  end
-
   describe 'POST #create' do
     context 'sign_in with user_admin role' do
       context 'with valid params' do
@@ -212,7 +188,7 @@ RSpec.describe InquiriesController, type: :controller do
         it 'redirects to the inquiry' do
           login_with user_admin
           put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
-          expect(response).to redirect_to(timeslots_url)
+          expect(response).to redirect_to(inquiries_url)
         end
       end
 
@@ -220,7 +196,7 @@ RSpec.describe InquiriesController, type: :controller do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_admin
           put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status_update }, session: valid_session
-          expect(response).to be_successful
+          expect(response).not_to be_successful
         end
       end
     end
@@ -237,7 +213,7 @@ RSpec.describe InquiriesController, type: :controller do
         it 'redirects to the inquiry' do
           login_with user_manager
           put :update, params: { id: inquiry.to_param, inquiry: inquiry_valid_status_update }, session: valid_session
-          expect(response).to redirect_to(timeslots_url)
+          expect(response).to redirect_to(inquiries_url)
         end
       end
 
@@ -245,7 +221,7 @@ RSpec.describe InquiriesController, type: :controller do
         it "returns a success response (i.e. to display the 'edit' template)" do
           login_with user_manager
           put :update, params: { id: inquiry.to_param, inquiry: inquiry_invalid_status_update }, session: valid_session
-          expect(response).to be_successful
+          expect(response).not_to be_successful
         end
       end
     end

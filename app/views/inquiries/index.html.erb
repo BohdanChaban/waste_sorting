@@ -11,15 +11,37 @@
   </thead>
 
   <tbody>
-    <% @inquiries.each do |inquiry| %>
+    <% if current_user&.manager?  %>
+    <% @initiated.each do |inquiry| %>
       <tr>
         <td><%= inquiry.status %></td>
-        <td><%= link_to 'Show', inquiry %></td>
-        <% unless current_user&.customer?  %>
-          <td><%= link_to 'Edit', edit_inquiry_path(inquiry) %></td>
-        <% end %>
+        <td><%= link_to 'Approve', inquiry_path(id: inquiry.id, inquiry: { status: 'approved' }), method: :patch %></td>
+        <td><%= link_to 'Cancel', inquiry_path(id: inquiry.id, inquiry: { status: 'cancelled' }), method: :patch %></td>
+        <td><%= link_to 'Decline', inquiry_path(id: inquiry.id, inquiry: { status: 'declined' }), method: :patch %></td>
+        <td><%= link_to 'Complete', inquiry_path(id: inquiry.id, inquiry: { status: 'completed' }), method: :patch %></td>
       </tr>
     <% end %>
+
+    <% @approved.each do |inquiry| %>
+      <tr>
+        <td><%= inquiry.status %></td>
+        <td><%= link_to 'Approve', inquiry_path(id: inquiry.id, inquiry: { status: 'approved' }), method: :patch %></td>
+        <td><%= link_to 'Cancel', inquiry_path(id: inquiry.id, inquiry: { status: 'cancelled' }), method: :patch %></td>
+        <td><%= link_to 'Decline', inquiry_path(id: inquiry.id, inquiry: { status: 'declined' }), method: :patch %></td>
+        <td><%= link_to 'Complete', inquiry_path(id: inquiry.id, inquiry: { status: 'completed' }), method: :patch %></td>
+      </tr>
+    <% end %>
+
+    <% @completed.each do |inquiry| %>
+      <tr>
+        <td><%= inquiry.status %></td>
+        <td><%= link_to 'Approve', inquiry_path(id: inquiry.id, inquiry: { status: 'approved' }), method: :patch %></td>
+        <td><%= link_to 'Cancel', inquiry_path(id: inquiry.id, inquiry: { status: 'cancelled' }), method: :patch %></td>
+        <td><%= link_to 'Decline', inquiry_path(id: inquiry.id, inquiry: { status: 'declined' }), method: :patch %></td>
+        <td><%= link_to 'Complete', inquiry_path(id: inquiry.id, inquiry: { status: 'completed' }), method: :patch %></td>
+      </tr>
+    <% end %>
+  <% end %>
   </tbody>
 </table>
 
