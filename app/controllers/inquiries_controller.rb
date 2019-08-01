@@ -1,5 +1,5 @@
 class InquiriesController < ApplicationController
-  before_action :check_customer_access, only: %i[new create]
+  before_action :check_customer_access, only: %i[create]
   before_action :check_full_access, only: %i[update destroy]
   before_action :set_inquiry, only: %i[show update destroy]
 
@@ -26,7 +26,6 @@ class InquiriesController < ApplicationController
   end
 
   def update
-    @inquiry.user = current_user
     respond_to do |format|
       if @inquiry.update(inquiry_params)
         format.html { redirect_to inquiries_url, notice: 'Inquiry was successfully updated.' }
