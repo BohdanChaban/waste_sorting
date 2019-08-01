@@ -48,5 +48,11 @@ FactoryBot.define do
       association :user, factory: :user_admin
       district { nil }
     end
+    factory :account_with_manager_role do
+      association :user, factory: :user_manager
+      name { 'Manager' }
+      district { nil }
+      mobile_number { '380996548874' }
+    end
   end
 end

@@ -6,6 +6,12 @@ FactoryBot.define do
     role { 'customer' }
     password { '12345678' }
 
+    #   trait :man do
+    # email { 'manager@gmail.com' }
+    # role { 'manager' }
+    # password { '12345678' }
+    # end
+
     factory :user_customer do
       email { 'customer@gmail.com' }
       role { 'customer' }

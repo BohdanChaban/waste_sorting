@@ -2,7 +2,8 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     if current_user
       @user = User.new(sign_up_params)
-      @user.save ? (redirect_to root_path, notice: 'User succesfully created!') : (render :new)
+      @user.role = 'manager'
+      @user.save ? (redirect_to accounts_path(role: 'manager'), notice: 'User succesfully created!') : (render :new)
     else
       super
     end
@@ -20,7 +21,11 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     if current_user.admin?
       user_role_check
-      @user.update_attributes(account_update_params) ? (redirect_to accounts_path(role: 'manager'), notice: 'Updated User.') : (render :edit)
+      if @user.update_attributes(account_update_params)
+        redirect_to accounts_path(role: 'manager'), notice: 'Updated User.'
+      else
+        render :edit
+      end
     else
       super
     end
@@ -41,7 +46,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def authorize_user!
-    redirect_to '/', notice: 'Your permissions do not allow access to this page' unless current_user.admin?
+    redirect_to '/', notice: 'Not allow access to this page' unless current_user.nil? || current_user.admin?
   end
 
   def after_sign_up_path_for(_resource)
