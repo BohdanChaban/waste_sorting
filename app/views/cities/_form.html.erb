@@ -4,19 +4,20 @@
       <h2><%= pluralize(city.errors.count, "error") %> prohibited this city from being saved:</h2>
 
       <ul>
-      <% city.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% city.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="city-form-size">
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions form-group">
+      <%= form.button :submit => "", class: "btn btn-warning"%>
+    </div>
+  </div>  
 <% end %>
