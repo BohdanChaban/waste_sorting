@@ -8,10 +8,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  namespace :admin do
-    get '', to: 'dashboard#index', as: '/'
-    resources :users
-  end
   resources :cities, only: %i[index create new show] do
     resources :districts, except: %i[index show]
   end

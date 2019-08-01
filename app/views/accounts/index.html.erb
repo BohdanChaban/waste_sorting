@@ -21,7 +21,6 @@
           <td><%= account.surname %></td>
           <td><%= account.address %></td>
           <td><%= account.mobile_number %></td>
-          <td><%= link_to '<button type="button" class="btn btn-light">Show</button>'.html_safe, account %></td>
           <% if params[:role] == "manager" && current_user.admin? %>
             <td><%= link_to '<button type="button" class="btn btn-dark">Edit</button>'.html_safe,edit_user_registration_path(:id => account.user_id) %></td>
           <% end %>
@@ -34,5 +33,5 @@
 <% end %>
 
 <% if params[:role] == "manager" %>
-<%= link_to '<button type="button" class="btn btn-success">New Manager</button>'.html_safe, new_user_registration_path %>
+<%= link_to '<button type="button" class="btn btn-warning">New Manager</button>'.html_safe, new_user_registration_path %>
 <% end %>

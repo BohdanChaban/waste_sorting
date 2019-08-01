@@ -21,25 +21,22 @@
     <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control'  %>
   </div>
 
-  <% if !current_user.admin?%>
+  <% if current_user.admin?%>
+    <div class="form-group"> 
+      <%= f.button :submit => "", name: "id", value: @user.id, class: 'btn btn-warning'%>
+    </div>
+  <% else %>
     <div class="form-group">
       <%= f.label :current_password %>
       <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
 
-      <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
+    <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
     </div>
-  <% end %>
 
-  <% if current_user.admin?%>
-    <div class="form-group"> 
-      <%= f.button :submit => "", name: "id", value: @user.id, class: 'btn btn-danger'%>
-    </div>
-  <% else %>
     <div class="form-group">
-      <%= f.submit t('.update'), class: 'btn btn-primary' %>
+      <%= f.submit t('.update'), class: 'btn btn-warning' %>
     </div>
   <% end %>
-
 <% end %>
 
-<%= link_to t('.back'), :back, class: "btn btn-light" %>
+<%= link_to t('.back'), :back, class: "btn btn-warning" %>
