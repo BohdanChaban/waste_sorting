@@ -1,31 +1,34 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <strong>Name:</strong>
-  <%= @city.name %>
-</p>
-<table>
-  <thead>
-    <tr>
-      <th>Districts</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody> 	  
-    <% @city.districts.each do |district| %>
+<div class="city-item">
+  <p>
+    <div class="city-text-size">
+      <strong>Name:</strong>
+      <%= @city.name %>
+    </div>  
+  </p>
+  <table>
+    <thead class="city-text-size">
       <tr>
-        <td><%= district.name %></td>
-        <% if current_user.admin? %> 
-        <td><%= link_to "Edit", edit_city_district_path(@city, district) %></td>
-        <td><%= link_to "Delete", city_district_path(@city, district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <th>Districts</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-  </table>
+    </thead>
 
-<%= link_to 'Back', cities_path %>
+    <tbody> 	  
+      <% @city.districts.each do |district| %>
+        <tr>
+          <td class="city-text-size"><%= district.name %></td>
+          <% if current_user&.admin? %> 
+            <td><%= link_to '<button type="button" class="btn btn-warning">Edit</button>'.html_safe, edit_city_district_path(@city, district) %></td>
+            <td><%= link_to '<button type="button" class="btn btn-warning">Delete</button>'.html_safe, city_district_path(@city, district), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%= link_to '<button type="button" class="btn btn-warning">Back</button>'.html_safe, cities_path %>
 
 <%if current_user.admin?%> 
-<%= link_to "Add Districts", new_city_district_path(@city) %>
+  <%= link_to'<button type="button" class="btn btn-warning">Add district</button>'.html_safe , new_city_district_path(@city) %>
 <% end %>

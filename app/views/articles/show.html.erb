@@ -12,6 +12,6 @@
   </div> 
 </div>
 <% if current_user&.admin?%>  
-  <%= link_to '<button type="button" class="btn btn-danger">Edit</button>'.html_safe, edit_article_path(@article) %>
+  <%= link_to '<button type="button" class="btn btn-warning">Edit</button>'.html_safe, edit_article_path(@article) %>
 <% end %>
-<%= link_to '<button type="button" class="btn btn-danger">Back</button>'.html_safe, articles_path %>
+<%= link_to '<button type="button" class="btn btn-warning">Back</button>'.html_safe, articles_path %>

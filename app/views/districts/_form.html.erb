@@ -10,14 +10,17 @@
       </ul>
     </div>
   <% end %>
+  <div class="district-form-size">
+    <div class="form-group">
+      <div class="district-text-size">
+        <%= form.label :name %>
+      </div>  
+      <%= form.text_field :name, class: "form-control" %>
+      <%= form.hidden_field :city_id, value: params[:city_id] %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-    <%= form.hidden_field :city_id, value: params[:city_id] %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="actions form-group">
+        <%= form.button :submit => "", class: "btn btn-warning"%>
+    </div>
+  </div>  
 <% end %>
