@@ -36,7 +36,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'devise-bootstrap-views', ' ~> 1.0 '
 
-gem 'therubyracer'
+gem 'bootstrap', '~> 4.0.0'
+gem 'jquery-rails', '~> 4.3.1'
+gem 'mini_racer'
 
 group :development, :test do
   gem 'coveralls', require: false
