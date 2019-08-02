@@ -5,11 +5,11 @@ class TimeslotService
 
   def call
     if @user&.admin?
-      Timeslot.all
+      Timeslot.all.order(:start_time)
     elsif @user&.manager?
       @user.timeslots
     elsif @user&.customer?
-      Timeslot.select { |t| t.district == @user.account.district }.reject(&:max_count_inquiry?)
+      Timeslot.order(:start_time).select { |t| t.district == @user.account.district }.reject(&:max_count_inquiry?)
     end
   end
 end
